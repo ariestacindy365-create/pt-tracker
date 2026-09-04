@@ -1,0 +1,4342 @@
+[
+  {
+    "code": "G242",
+    "name": "3 Point DB Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "5-10-5 Shuttle",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Kardio",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "1",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G261",
+    "name": "ALT DB Bent Over Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G260",
+    "name": "ALT DB Floor Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G183",
+    "name": "ALT DB Front Raise",
+    "primaryMuscle": "Bahu Depan",
+    "secondaryMuscle": "Dada Atas",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G215",
+    "name": "ALT DB Incline Bench Press",
+    "primaryMuscle": "Dada Atas",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G271",
+    "name": "ALT Pike Leg Lift",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G064",
+    "name": "Ab Wheel Rollout",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Punggung Bawah",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Active Hang",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": null,
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": null,
+    "setRangeHint": null
+  },
+  {
+    "code": "G073",
+    "name": "Air Bike Sprint",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Conditioning",
+    "equipment": "Air Bike",
+    "repRangeHint": "10-20s",
+    "setRangeHint": "5-10"
+  },
+  {
+    "code": "G074",
+    "name": "Air Bike Steady",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Conditioning",
+    "equipment": "Air Bike",
+    "repRangeHint": "10-20min",
+    "setRangeHint": "1"
+  },
+  {
+    "code": "G262",
+    "name": "Air Rower",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-10min",
+    "setRangeHint": "1"
+  },
+  {
+    "code": "G101",
+    "name": "Air Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G211",
+    "name": "Alternating DB Bench Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G144",
+    "name": "Alternating DB Bent Over Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G106",
+    "name": "Alternating DB Floor Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G136",
+    "name": "Alternating DB Snatch",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Dumbbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G330",
+    "name": "Alternating Reverse Lunge",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "16-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G145",
+    "name": "Arrested Superman Hold",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G244",
+    "name": "Assisted Banded Push Up",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Band",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G174",
+    "name": "Assisted Box Pistol Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G178",
+    "name": "Assisted Sissy Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "-",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G035",
+    "name": "BB Back Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G001",
+    "name": "BB Bench Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "6-12",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G020",
+    "name": "BB Bent Over Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G030",
+    "name": "BB Bicep Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "BB Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Barbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G044",
+    "name": "BB Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Punggung Bawah, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "3-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G146",
+    "name": "BB Eccentric Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "4-6",
+    "setRangeHint": "4-5"
+  },
+  {
+    "code": "G099",
+    "name": "BB Floor Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": null,
+    "setRangeHint": null
+  },
+  {
+    "code": "G036",
+    "name": "BB Front Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G048",
+    "name": "BB Glute Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "12-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G054",
+    "name": "BB Good Morning",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Hamstring, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G047",
+    "name": "BB Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring, Paha Depan",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G002",
+    "name": "BB Incline Bench Press",
+    "primaryMuscle": "Dada Atas",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G374",
+    "name": "BB KAS Glute Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": null,
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G008",
+    "name": "BB Overhead Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Upper Trap",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G021",
+    "name": "BB Pendley Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G045",
+    "name": "BB Romanian Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Punggung Bawah",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G033",
+    "name": "BB Shrug",
+    "primaryMuscle": "Upper Trap",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G137",
+    "name": "BB Stiff Legged Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Punggung Bawah, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G335",
+    "name": "BB Thruster",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Bahu",
+    "category": "Finisher",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G013",
+    "name": "BB Tricep Close Grip",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "Dada, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G039",
+    "name": "BB Walking Lunges",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G258",
+    "name": "BB Zercher Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core, Punggung Atas",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G133",
+    "name": "BFSU",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G053",
+    "name": "Back Extension",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Backpedal Sprint",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Hamstring",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G181",
+    "name": "Ball Chest Throw",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu",
+    "category": "Upper Push",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G191",
+    "name": "Ball Russian Twist",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Band Bicep Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G059",
+    "name": "Band Clamshell",
+    "primaryMuscle": "Glutes Med",
+    "secondaryMuscle": "-",
+    "category": "Lower Pull",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G350",
+    "name": "Band Face Pull",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Rear Delt, Rotator",
+    "category": "Upper Pull",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Band Good Morning",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Hamstring, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G060",
+    "name": "Band Hip Abduction",
+    "primaryMuscle": "Glutes Med",
+    "secondaryMuscle": "-",
+    "category": "Lower Pull",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Band Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G027",
+    "name": "Band Pull Apart",
+    "primaryMuscle": "Rear Delt",
+    "secondaryMuscle": "Upper Trap",
+    "category": "Upper Pull",
+    "equipment": "Band",
+    "repRangeHint": "15-25",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Band Push Up",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Band",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G078",
+    "name": "Band Resisted Sprint",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha, Glutes",
+    "category": "Conditioning",
+    "equipment": "Band",
+    "repRangeHint": "10-20m",
+    "setRangeHint": "5-8"
+  },
+  {
+    "code": null,
+    "name": "Band Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes",
+    "category": "Knee Dominant",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Band Tricep Pushdown",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G159",
+    "name": "Banded Chin Up",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Band",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G150",
+    "name": "Banded Dead Bug",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Band",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G363",
+    "name": "Banded Hamstring Curl",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "-",
+    "category": "Hip Dominant",
+    "equipment": "Band",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G255",
+    "name": "Barbell Push Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Paha Depan",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": null,
+    "name": "Battle Rope Jumping Jack",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Kardio",
+    "category": "Conditioning",
+    "equipment": "Rope",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G340",
+    "name": "Battle Rope Wave",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Bahu, Core",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "5"
+  },
+  {
+    "code": "G091",
+    "name": "Battling Rope",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": null,
+    "category": "Conditioning",
+    "equipment": "Rope",
+    "repRangeHint": "30\"",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G324",
+    "name": "Bear Crawl",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Core, Bahu, Paha",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-20m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G151",
+    "name": "Bear Crawl Toe Touch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Paha",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G083",
+    "name": "Bear Hold",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Paha Depan",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-45s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G256",
+    "name": "Bear Hold Tap Shoulder",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Paha",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Bear Hug Sandbag Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Full Body",
+    "category": "Carry",
+    "equipment": "Sandbag",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G290",
+    "name": "Bench Dips",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "Dada Bawah, Bahu",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G223",
+    "name": "Bicycle Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G229",
+    "name": "Bird Dog",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Punggung Bawah, Glutes",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G250",
+    "name": "Box Dips Triceps",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "Dada Bawah, Bahu",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G322",
+    "name": "Box Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G212",
+    "name": "Box Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "4-6",
+    "setRangeHint": "4-5"
+  },
+  {
+    "code": null,
+    "name": "Bring Sally Up Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": null,
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": null,
+    "setRangeHint": null
+  },
+  {
+    "code": "G327",
+    "name": "Broad Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G346",
+    "name": "Broad Jump Squat",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "6-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G041",
+    "name": "Bulgarian Split Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G316",
+    "name": "Burpee",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G317",
+    "name": "Burpee Box Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": null,
+    "name": "Burpee Broad Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G109",
+    "name": "Burpees",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G122",
+    "name": "Butterfly Sit Up",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G170",
+    "name": "Buttkick",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Hamstring, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G031",
+    "name": "Cable Bicep Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Cable Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Cable",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G299",
+    "name": "Cable Chest Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G065",
+    "name": "Cable Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "-",
+    "category": "Core",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G006",
+    "name": "Cable Fly",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Cable Front Raise",
+    "primaryMuscle": "Bahu Depan",
+    "secondaryMuscle": "Dada Atas",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Cable Hammer Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "Forearm",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G058",
+    "name": "Cable Kickback",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Lower Pull",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G024",
+    "name": "Cable Lat Pulldown",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G011",
+    "name": "Cable Lateral Raise",
+    "primaryMuscle": "Bahu Samping",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "12-20",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G314",
+    "name": "Cable Low Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G016",
+    "name": "Cable Overhead Tricep",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G049",
+    "name": "Cable Pull Through",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G360",
+    "name": "Cable Reverse Fly",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Rear Delt, Bahu",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G023",
+    "name": "Cable Seated Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": null,
+    "name": "Cable Shoulder Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Cable Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes",
+    "category": "Knee Dominant",
+    "equipment": "Cable",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G311",
+    "name": "Cable Straight Arm PD",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G015",
+    "name": "Cable Tricep Pushdown",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G055",
+    "name": "Calf Raise Standing",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-25",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Carioca",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Glutes",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G163",
+    "name": "Catroll Chest Fly",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G208",
+    "name": "Chest Supported ALT DB Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G231",
+    "name": "Chest Supported DB Lateral Raise",
+    "primaryMuscle": "Bahu Samping",
+    "secondaryMuscle": "Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G216",
+    "name": "Chest Supported DB Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G019",
+    "name": "Chin-Up",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-12",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G164",
+    "name": "Clamshell",
+    "primaryMuscle": "Glutes Med",
+    "secondaryMuscle": "-",
+    "category": "Lower Pull",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G284",
+    "name": "Commandos",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Trisep",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G269",
+    "name": "Concentric Push Up",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Cone Zig Zag Sprint",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Kardio",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G230",
+    "name": "Copenhagen Plank",
+    "primaryMuscle": "Paha Dalam",
+    "secondaryMuscle": "Core, Glutes",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G206",
+    "name": "Cossack Squat",
+    "primaryMuscle": "Paha Dalam",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Cross Body Farmer Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Punggung Bawah",
+    "category": "Carry",
+    "equipment": "Kettlebell",
+    "repRangeHint": "20-30m each",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G177",
+    "name": "Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "-",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G222",
+    "name": "Crunch Knee Taps",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G283",
+    "name": "DB Arnold Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G295",
+    "name": "DB Around The World",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G003",
+    "name": "DB Bench Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G268",
+    "name": "DB Bent Shrug Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Upper Trap, Bisep",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G029",
+    "name": "DB Bicep Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G102",
+    "name": "DB Bridge Floor Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Glutes",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G056",
+    "name": "DB Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G281",
+    "name": "DB Chest Fly",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G025",
+    "name": "DB Chest Supported Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G116",
+    "name": "DB Devil Press",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Dumbbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G165",
+    "name": "DB Floor Chest Flies",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G192",
+    "name": "DB Floor Flies",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G084",
+    "name": "DB Floor Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G005",
+    "name": "DB Fly",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G130",
+    "name": "DB Front Rack Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G012",
+    "name": "DB Front Raise",
+    "primaryMuscle": "Bahu Depan",
+    "secondaryMuscle": "Dada Atas",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G037",
+    "name": "DB Goblet Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "DB Good Morning",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Hamstring, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G032",
+    "name": "DB Hammer Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G004",
+    "name": "DB Incline Press",
+    "primaryMuscle": "Dada Atas",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G010",
+    "name": "DB Lateral Raise",
+    "primaryMuscle": "Bahu Samping",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-20",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G142",
+    "name": "DB Leaning Lateral Raise",
+    "primaryMuscle": "Bahu Samping",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G166",
+    "name": "DB Lu Raise",
+    "primaryMuscle": "Bahu Samping",
+    "secondaryMuscle": "Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G038",
+    "name": "DB Lunges",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G339",
+    "name": "DB Man Maker",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Dumbbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G079",
+    "name": "DB Over Head Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Upper Trap",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G167",
+    "name": "DB Prone Hams Lying Curl",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "-",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G198",
+    "name": "DB Pull Over",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Punggung Atas, Trisep",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G291",
+    "name": "DB Pullover",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Punggung Atas, Trisep",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G028",
+    "name": "DB Rear Delt Fly",
+    "primaryMuscle": "Rear Delt",
+    "secondaryMuscle": "Upper Trap",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G197",
+    "name": "DB Rear Delt Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Rear Delt, Bisep",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G309",
+    "name": "DB Renegade Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G046",
+    "name": "DB Romanian Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G009",
+    "name": "DB Shoulder Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G034",
+    "name": "DB Shrug",
+    "primaryMuscle": "Upper Trap",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G022",
+    "name": "DB Single Arm Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G249",
+    "name": "DB Single Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G188",
+    "name": "DB Single Leg Glute Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G050",
+    "name": "DB Single Leg RDL",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G375",
+    "name": "DB Skull Crusher",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": null,
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G304",
+    "name": "DB Stiff Leg Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Punggung Bawah",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G105",
+    "name": "DB Thruster",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Bahu",
+    "category": "Finisher",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G094",
+    "name": "DB Tricep Extention",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G014",
+    "name": "DB Tricep Overhead",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G218",
+    "name": "DB Triceps Kickback",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G238",
+    "name": "DB Woodchop",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G149",
+    "name": "DB Z Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Core, Trisep",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G063",
+    "name": "Dead Bug",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "-",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G121",
+    "name": "Deadhang",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Forearm",
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-45s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Decline BB Bench Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": null,
+    "name": "Decline DB Bench Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G289",
+    "name": "Deficit Reverse Lunges",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G368",
+    "name": "Devil Press",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Dumbbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G017",
+    "name": "Dip",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "Dada Bawah, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G202",
+    "name": "Double Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Double Under",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "Kardio",
+    "category": "Conditioning",
+    "equipment": "Rope",
+    "repRangeHint": "20-40",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G232",
+    "name": "Dragon Flag Hold",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor, Punggung",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G158",
+    "name": "Elbow to Full Plank",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Trisep",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G162",
+    "name": "Elevated BB Glute Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G265",
+    "name": "Elevated Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "-",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G160",
+    "name": "Extended Plank",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Glutes",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G026",
+    "name": "Face Pull",
+    "primaryMuscle": "Rear Delt",
+    "secondaryMuscle": "Upper Trap, Rotator",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G070",
+    "name": "Farmer Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Forearm, Glutes",
+    "category": "Carry",
+    "equipment": "Dumbbell",
+    "repRangeHint": "20-40m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G131",
+    "name": "Flexed Arm Hang",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "Punggung Atas",
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G278",
+    "name": "Floor Back Extension",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G277",
+    "name": "Floor Touch Jacks",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G120",
+    "name": "Flutter Kick",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G118",
+    "name": "Front Foot Elevated Split Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G147",
+    "name": "Full Plank",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Glutes",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G285",
+    "name": "Glute Bridge March",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring, Core",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G195",
+    "name": "Glute Ham Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G306",
+    "name": "Glute Ham Raise",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Punggung Bawah",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G233",
+    "name": "HK Pull Down",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G220",
+    "name": "HK Single Arm Landmine Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G179",
+    "name": "HK Wood Chop",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G138",
+    "name": "Half Kneeling Ball Rotation",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G287",
+    "name": "Hamstring Walk Out",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Handstand Push Up Progression",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G067",
+    "name": "Hanging Knee Raise",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Pull-up bar",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G089",
+    "name": "Heel Elevated Goblet Squat (1 1/2 reps)",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G190",
+    "name": "Heel Touch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G187",
+    "name": "Heels Elevated Squat Pulse",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-25",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G093",
+    "name": "High Knee",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": null,
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "High Knee Skip",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Paha Depan",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G319",
+    "name": "High Knees",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Core",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G226",
+    "name": "Hollow Body Hold",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G108",
+    "name": "Hollow Hold Tuck",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G196",
+    "name": "Hollow Progression",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G247",
+    "name": "Horizontal Banded Woodchop",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Band",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G282",
+    "name": "In and Out Abs",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G323",
+    "name": "Inchworm",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Core, Hamstring, Bahu",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G080",
+    "name": "Incline Push Up",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G087",
+    "name": "Inverted Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G173",
+    "name": "Iso Glute Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-45s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G274",
+    "name": "Jack Press",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Bahu, Full Body",
+    "category": "Finisher",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G236",
+    "name": "Jump Box",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G140",
+    "name": "Jump Box Over",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G251",
+    "name": "Jump Rope",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Betis, Koordinasi",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G090",
+    "name": "Jump Squat",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan",
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G113",
+    "name": "Jumping Jack",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G345",
+    "name": "KB Alternating Swing",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "12-20",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G112",
+    "name": "KB American Swing",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Bahu, Core",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G370",
+    "name": "KB Around The World",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Oblique",
+    "category": "Core",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "KB Bicep Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G354",
+    "name": "KB Bottoms-Up Carry",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Core, Forearm",
+    "category": "Carry",
+    "equipment": "Kettlebell",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "KB Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G293",
+    "name": "KB Chest Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G366",
+    "name": "KB Clean",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Hamstring, Core",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G344",
+    "name": "KB Dead Swing",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G315",
+    "name": "KB Deadrow",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Hamstring",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G338",
+    "name": "KB Figure 8",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Core, Paha, Glutes",
+    "category": "Finisher",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G292",
+    "name": "KB Floor Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "KB Goblet Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G342",
+    "name": "KB Goblet Squat Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G362",
+    "name": "KB Good Morning",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Hamstring, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G123",
+    "name": "KB Gorilla Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G351",
+    "name": "KB Halo",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Core, Upper Trap",
+    "category": "Upper Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "KB High Pull",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bahu",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G352",
+    "name": "KB Hip Hinge",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Punggung Bawah",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "KB Push Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-10 each",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G308",
+    "name": "KB Renegade Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G302",
+    "name": "KB Romanian Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Punggung Bawah",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G307",
+    "name": "KB Single Arm Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G303",
+    "name": "KB Single Leg Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G367",
+    "name": "KB Snatch",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Hamstring, Bahu",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G071",
+    "name": "KB Suitcase Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Trap",
+    "category": "Carry",
+    "equipment": "Dumbbell",
+    "repRangeHint": "20-40m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G161",
+    "name": "KB Sumo High Pull",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bahu, Hamstring",
+    "category": "Upper Pull",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G082",
+    "name": "KB Swing",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": null,
+    "category": "Conditioning",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G333",
+    "name": "KB Swing Tabata",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Hamstring, Glutes, Core",
+    "category": "Finisher",
+    "equipment": "Kettlebell",
+    "repRangeHint": "20s on/10s off",
+    "setRangeHint": "8"
+  },
+  {
+    "code": "G334",
+    "name": "KB Thruster",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Bahu",
+    "category": "Finisher",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": null,
+    "name": "KB Tricep Extension",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "Bahu",
+    "category": "Upper Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G369",
+    "name": "KB Turkish Get-Up",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Paha, Glutes",
+    "category": "Core",
+    "equipment": "Kettlebell",
+    "repRangeHint": "3-5",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G114",
+    "name": "Kas Glute Bridge",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring, Core",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-25",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G259",
+    "name": "Kettlebell Halo",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Core, Upper Trap",
+    "category": "Upper Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G176",
+    "name": "Kneeling Ballslam",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Punggung Atas",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G184",
+    "name": "Kneeling Banded Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "-",
+    "category": "Core",
+    "equipment": "Band",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G100",
+    "name": "Kneeling DB Shoulder Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G168",
+    "name": "Kneeling SA DB Shoulder Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G185",
+    "name": "Kneeling SA Lat Pull Down",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Ladder Icky Shuffle",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Betis",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": null,
+    "name": "Ladder In-In-Out-Out",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Betis",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G153",
+    "name": "Landmine Goblet Reverse Lunges",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G152",
+    "name": "Landmine Goblet Split Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G171",
+    "name": "Landmine Hack Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G135",
+    "name": "Landmine Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Dada, Trisep",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G214",
+    "name": "Landmine Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G320",
+    "name": "Lateral Bound",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Glutes Med, Paha",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G378",
+    "name": "Lateral Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": null,
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20\"",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Lateral Shuffle",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Glutes",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G157",
+    "name": "Leg Assisted Chin Up",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G095",
+    "name": "Lying Leg Raise",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": null,
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G336",
+    "name": "Med Ball Burpee",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G300",
+    "name": "Med Ball Chest Pass",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu",
+    "category": "Upper Push",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G373",
+    "name": "Med Ball Lateral Throw",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Oblique",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G348",
+    "name": "Med Ball Partner Toss",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Dada",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G349",
+    "name": "Med Ball Rainbow Slam",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Punggung Atas",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G343",
+    "name": "Med Ball Rotational Slam",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Core, Bahu",
+    "category": "Finisher",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G069",
+    "name": "Med Ball Rotational Throw",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Punggung Atas",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G068",
+    "name": "Med Ball Slam",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Punggung Atas",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G077",
+    "name": "Med Ball Wall Ball",
+    "primaryMuscle": "Full Body",
+    "secondaryMuscle": "Paha, Bahu, Core",
+    "category": "Conditioning",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Medicine Ball Slam Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G318",
+    "name": "Mountain Climber",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Core, Bahu",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-40",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G052",
+    "name": "Nordic Curl",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "-",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G072",
+    "name": "Overhead Carry",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "-",
+    "category": "Carry",
+    "equipment": "Dumbbell",
+    "repRangeHint": "20-40m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G240",
+    "name": "Overhead Iso Hold",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Core, Trisep",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G066",
+    "name": "Pallof Press",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu",
+    "category": "Core",
+    "equipment": "Cable",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G203",
+    "name": "Pause Back Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "3-6",
+    "setRangeHint": "4-5"
+  },
+  {
+    "code": "G141",
+    "name": "Pause Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Punggung Bawah, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "3-6",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": null,
+    "name": "Pike Push Up",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G062",
+    "name": "Plank",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Glutes",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G199",
+    "name": "Plank Jacks",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Kardio, Bahu",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-25",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G272",
+    "name": "Plank Pull Through",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Oblique",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Plank Shoulder Tap",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "16-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G201",
+    "name": "Plank Tap Shoulder",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-16",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G286",
+    "name": "Plank With Leg Lift",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Glutes, Bahu",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G329",
+    "name": "Plank to Push-Up",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Core, Dada, Bahu",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G341",
+    "name": "Plate Burpee",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Plate",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": null,
+    "name": "Plate Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Plate",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Plate Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Plate",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G119",
+    "name": "Plate Front Raise",
+    "primaryMuscle": "Bahu Depan",
+    "secondaryMuscle": "Dada Atas",
+    "category": "Upper Push",
+    "equipment": "Plate",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G092",
+    "name": "Plate Ground Overhead",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Plate",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G337",
+    "name": "Plate Ground to OH",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Plate",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G371",
+    "name": "Plate Halos",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Core",
+    "category": "Core",
+    "equipment": "Plate",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G353",
+    "name": "Plate Hip Hinge",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Plate",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Plate Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Plate",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G172",
+    "name": "Plate Hold",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Forearm, Bahu",
+    "category": "Core",
+    "equipment": "Plate",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G361",
+    "name": "Plate Lateral Raise",
+    "primaryMuscle": "Bahu Samping",
+    "secondaryMuscle": "Bahu Depan",
+    "category": "Upper Pull",
+    "equipment": "Plate",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G355",
+    "name": "Plate Pinch Carry",
+    "primaryMuscle": "Core, Trap",
+    "secondaryMuscle": "Forearm",
+    "category": "Carry",
+    "equipment": "Plate",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G294",
+    "name": "Plate Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu Depan, Trisep",
+    "category": "Upper Push",
+    "equipment": "Plate",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G305",
+    "name": "Plate Romanian Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Plate",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G310",
+    "name": "Plate Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Plate",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G301",
+    "name": "Plate Squeeze Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Plate",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G266",
+    "name": "Plate Step Up Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Plate",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Plate Superman Hold",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Glutes",
+    "category": "Core",
+    "equipment": "Plate",
+    "repRangeHint": "20-40s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Plate Twist",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": null,
+    "category": "Finisher",
+    "equipment": "Plate",
+    "repRangeHint": null,
+    "setRangeHint": null
+  },
+  {
+    "code": "G313",
+    "name": "Plate Upright Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bahu, Bisep",
+    "category": "Upper Pull",
+    "equipment": "Plate",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G359",
+    "name": "Prone Hamstring Curl",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "-",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G207",
+    "name": "Prone Leg Curl",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "-",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G180",
+    "name": "Prone T Raise",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Rear Delt, Bahu",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G018",
+    "name": "Pull-Up",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": "5-12",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G132",
+    "name": "Push Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Paha Depan",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G007",
+    "name": "Push-Up",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G298",
+    "name": "Push-Up Archer",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Bahu, Trisep",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G297",
+    "name": "Push-Up Diamond",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G296",
+    "name": "Push-Up Wide Grip",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Bahu Depan",
+    "category": "Upper Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Rack Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu",
+    "category": "Carry",
+    "equipment": "Kettlebell",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G213",
+    "name": "Rear Foot Elevated Split Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G280",
+    "name": "Renegade Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G225",
+    "name": "Reverse Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G248",
+    "name": "Reverse Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "Brachialis, Forearm",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G126",
+    "name": "Reverse Fly",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G356",
+    "name": "Reverse Hyper",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G139",
+    "name": "Reverse Lunges",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G239",
+    "name": "Reverse Med Ball High Throw",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Punggung Atas",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G125",
+    "name": "Reverse Nordic Curl",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Core, Hip Flexor",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G365",
+    "name": "Ring Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Rope Tricep Pushdown",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Cable",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G186",
+    "name": "Rotational Ballslam",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Punggung Atas",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G085",
+    "name": "Run",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": null,
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "1 lap",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G243",
+    "name": "Russian Twist",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G086",
+    "name": "SA Catrol Pulldown",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "12 each",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G143",
+    "name": "SA DB Front Raise",
+    "primaryMuscle": "Bahu Depan",
+    "secondaryMuscle": "Dada Atas",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G200",
+    "name": "SA DB Shoulders Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G154",
+    "name": "SA Front Rack Step Up",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G264",
+    "name": "SA KB Swing",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Kettlebell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G156",
+    "name": "SA KB/DB Floor Press",
+    "primaryMuscle": "Dada",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Kettlebell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G210",
+    "name": "SA Landmine Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Dada, Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G263",
+    "name": "SA Triceps Kickback",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G076",
+    "name": "SAQ Cone Drill",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Kaki, Koordinasi",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G075",
+    "name": "SAQ Ladder",
+    "primaryMuscle": "Agility",
+    "secondaryMuscle": "Kaki, Koordinasi",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "5-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G088",
+    "name": "SL Deficit Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10 each",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Sandbag Bear Hug Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Forearm",
+    "category": "Carry",
+    "equipment": "Sandbag",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Sandbag Front Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Core",
+    "category": "Knee Dominant",
+    "equipment": "Sandbag",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Sandbag Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Sandbag",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Sandbag Overhead Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Sandbag",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Sandbag Romanian Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Sandbag",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Sandbag Rotational Slam",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu",
+    "category": "Core",
+    "equipment": "Sandbag",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Sandbag Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Sandbag",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G224",
+    "name": "Scissors",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-25",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G312",
+    "name": "Seal Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G254",
+    "name": "Seated Cable Facepull",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Rear Delt, Rotator",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G217",
+    "name": "Seated DB Shoulder Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G129",
+    "name": "Seated Hip Abduction",
+    "primaryMuscle": "Glutes Med",
+    "secondaryMuscle": "-",
+    "category": "Lower Pull",
+    "equipment": "Band",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G288",
+    "name": "Shoulder Press Supinated Grip",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Bisep",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Shuttle Run",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Conditioning",
+    "equipment": "SAQ",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "5-8"
+  },
+  {
+    "code": "G189",
+    "name": "Side Bent",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique",
+    "category": "Core",
+    "equipment": "Dumbbell",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G110",
+    "name": "Side Plank",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-45s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G276",
+    "name": "Side Plank Hip Dips",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G134",
+    "name": "Side Plank Rotations",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G234",
+    "name": "Single Arm Bent Over Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Rear Delt",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G221",
+    "name": "Single Arm Landmine Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep, Core",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G241",
+    "name": "Single Arm Pulldown",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Cable",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G237",
+    "name": "Single Leg Abduction RDL",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes Med, Core",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G205",
+    "name": "Single Leg Ball Rotation",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Glutes, Bahu",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G209",
+    "name": "Single Leg Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G253",
+    "name": "Single Leg Half Hip Thrust",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G358",
+    "name": "Single Leg Hip Thrust",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G321",
+    "name": "Skater Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Glutes Med, Paha",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G379",
+    "name": "Skierg",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": null,
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20\"",
+    "setRangeHint": "5-3"
+  },
+  {
+    "code": null,
+    "name": "Sled Backward Drag",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Kardio",
+    "category": "Conditioning",
+    "equipment": "Plate",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "5-8"
+  },
+  {
+    "code": null,
+    "name": "Sled Push",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan",
+    "category": "Conditioning",
+    "equipment": "Plate",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "5-8"
+  },
+  {
+    "code": "G204",
+    "name": "Sledge Push",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-20m",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G364",
+    "name": "Sliding Leg Curl",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G084",
+    "name": "Split Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G081",
+    "name": "Split Squat ISO Hold",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Hamstring",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "2-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G325",
+    "name": "Sprawl",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G328",
+    "name": "Sprint In Place",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "5"
+  },
+  {
+    "code": "G228",
+    "name": "Squat Hold",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G347",
+    "name": "Squat Hold Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G0375",
+    "name": "Squat Jump to Plate",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": null,
+    "category": "Kardio",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G331",
+    "name": "Squat Thrust",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G104",
+    "name": "Staggered Stance RDL",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G107",
+    "name": "Standing Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "-",
+    "category": "Lower Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-25",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G270",
+    "name": "Standing DB Hip Abduction",
+    "primaryMuscle": "Glutes Med",
+    "secondaryMuscle": "-",
+    "category": "Lower Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G175",
+    "name": "Standing DB Shoulders Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G127",
+    "name": "Standing Landmine Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G252",
+    "name": "Standing Woodchop",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique, Bahu",
+    "category": "Core",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Star Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Full Body",
+    "category": "Conditioning",
+    "equipment": "Bodyweight",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G040",
+    "name": "Step Up",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G245",
+    "name": "Strict Press",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep",
+    "category": "Upper Push",
+    "equipment": "Barbell",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": null,
+    "name": "Suitcase Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Punggung Bawah",
+    "category": "Carry",
+    "equipment": "Kettlebell",
+    "repRangeHint": "20-30m each",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G193",
+    "name": "Sumo Deadlift",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Paha Dalam",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "5-8",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G357",
+    "name": "Superman Hold",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G155",
+    "name": "Tall Kneeling DB Shd Press (SA)",
+    "primaryMuscle": "Bahu",
+    "secondaryMuscle": "Trisep, Core",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G235",
+    "name": "Tall Kneeling Rotational Ball Slam",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Punggung Atas",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G267",
+    "name": "Toe Walking",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "Core, Koordinasi",
+    "category": "Lower Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G124",
+    "name": "Triceps Extension",
+    "primaryMuscle": "Trisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Push",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G326",
+    "name": "Tuck Jump",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes, Core",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Two Hand KB Swing",
+    "primaryMuscle": "Glutes",
+    "secondaryMuscle": "Hamstring",
+    "category": "Conditioning",
+    "equipment": "Kettlebell",
+    "repRangeHint": "15-20",
+    "setRangeHint": "3-4"
+  },
+  {
+    "code": "G219",
+    "name": "Underhand BB Bent Over Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bisep",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "6-10",
+    "setRangeHint": "3-5"
+  },
+  {
+    "code": "G169",
+    "name": "Upright Row",
+    "primaryMuscle": "Punggung Atas",
+    "secondaryMuscle": "Bahu, Bisep",
+    "category": "Upper Pull",
+    "equipment": "Barbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G117",
+    "name": "V-Crunch",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G332",
+    "name": "V-Up",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Core",
+    "category": "Finisher",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G372",
+    "name": "Wall Ball Squat",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "10-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G128",
+    "name": "Wall Sit",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G279",
+    "name": "Wall Sit DB Front Hold",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Bahu, Core",
+    "category": "Knee Dominant",
+    "equipment": "Dumbbell",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G111",
+    "name": "Wall Sit Spicy",
+    "primaryMuscle": "Paha Depan",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Knee Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G227",
+    "name": "Wall Sit With Adductor Squeeze",
+    "primaryMuscle": "Paha Dalam",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Knee Dominant",
+    "equipment": "Band",
+    "repRangeHint": "30-60s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G374",
+    "name": "Wall Sit with Calf Raise",
+    "primaryMuscle": "Betis",
+    "secondaryMuscle": "Paha Depan",
+    "category": "Lower Push",
+    "equipment": "Bodyweight",
+    "repRangeHint": "12-10",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G194",
+    "name": "Wall Staggered Stance RDL",
+    "primaryMuscle": "Hamstring",
+    "secondaryMuscle": "Glutes, Core",
+    "category": "Hip Dominant",
+    "equipment": "Bodyweight",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G257",
+    "name": "Wall Stand Biceps Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "-",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G246",
+    "name": "Weighted Bear Hold",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu, Paha",
+    "category": "Core",
+    "equipment": "Dumbbell",
+    "repRangeHint": "20-30s",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G275",
+    "name": "Weighted Dead Bug",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor, Punggung",
+    "category": "Core",
+    "equipment": "Dumbbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G273",
+    "name": "Weighted Sit Ups",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Hip Flexor",
+    "category": "Core",
+    "equipment": "Plate",
+    "repRangeHint": "12-15",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G115",
+    "name": "Weighted Stairs Run w/ Sandbag",
+    "primaryMuscle": "Kardio",
+    "secondaryMuscle": "Paha Depan, Glutes",
+    "category": "Conditioning",
+    "equipment": "Sandbag",
+    "repRangeHint": "1-3min",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G182",
+    "name": "Windshield Wipers",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Oblique",
+    "category": "Core",
+    "equipment": "Bodyweight",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Woodchopper",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Bahu",
+    "category": "Core",
+    "equipment": "Medicine Ball",
+    "repRangeHint": "12-15 each",
+    "setRangeHint": "3"
+  },
+  {
+    "code": null,
+    "name": "Zercher Carry",
+    "primaryMuscle": "Core",
+    "secondaryMuscle": "Punggung Bawah",
+    "category": "Carry",
+    "equipment": "Sandbag",
+    "repRangeHint": "20-30m",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G148",
+    "name": "Zercher Good Morning",
+    "primaryMuscle": "Punggung Bawah",
+    "secondaryMuscle": "Hamstring, Glutes",
+    "category": "Hip Dominant",
+    "equipment": "Barbell",
+    "repRangeHint": "8-12",
+    "setRangeHint": "3"
+  },
+  {
+    "code": "G103",
+    "name": "Zotman Curl",
+    "primaryMuscle": "Bisep",
+    "secondaryMuscle": "Brachialis, Forearm",
+    "category": "Upper Pull",
+    "equipment": "Dumbbell",
+    "repRangeHint": "10-12",
+    "setRangeHint": "3"
+  }
+]

@@ -1,0 +1,198 @@
+// PT Tracker — schema untuk aplikasi khusus personal trainer.
+// Setiap Trainer punya daftar Client sendiri (tidak saling terlihat).
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Akun personal trainer. Login pakai email + password.
+model Trainer {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  clients Client[]
+}
+
+// Klien PT milik satu trainer. Trainer lain tidak bisa melihat/mengedit.
+// Login klien sendiri (email + PIN 4 digit) opsional — trainer yang
+// mengaktifkannya dengan mengisi email & PIN awal saat menambah/mengedit
+// klien, sama seperti pola member di olympus-gym-tracker.
+model Client {
+  id        String   @id @default(cuid())
+  trainerId String
+  trainer   Trainer  @relation(fields: [trainerId], references: [id], onDelete: Cascade)
+  name      String
+  phone     String?
+  notes     String?
+  email     String?  @unique
+  pinHash   String?
+  // Klien yang tidak aktif lagi disembunyikan dari daftar utama, bukan dihapus,
+  // supaya histori beban & body metric tetap tersimpan.
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  bodyMetrics     BodyMetric[]
+  loadEntries     LoadEntry[]
+  programs        Program[]
+  nutritionTarget NutritionTarget?
+  nutritionLogs   NutritionLog[]
+
+  @@index([trainerId])
+}
+
+// Satu pencatatan berat badan + komposisi tubuh (biasanya dari smart scale)
+// per klien per tanggal. Simpan ulang di tanggal yang sama akan menimpa (upsert).
+model BodyMetric {
+  id                 String   @id @default(cuid())
+  clientId           String
+  client             Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  recordedDate       DateTime
+  weight             Float
+  bodyFatPercent     Float?
+  skeletalMuscleMass Float?
+  visceralFat        Float?
+  note               String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  @@unique([clientId, recordedDate])
+  @@index([clientId, recordedDate])
+}
+
+// Satu set latihan (beban) milik klien pada satu tanggal untuk satu gerakan.
+// estimated1RM dihitung otomatis pakai rumus Epley: berat x (1 + reps/30).
+// programExerciseId opsional — diisi kalau set ini adalah realisasi dari
+// rencana program (bukan latihan bebas di luar program).
+model LoadEntry {
+  id                String           @id @default(cuid())
+  clientId          String
+  client            Client           @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  exerciseName      String
+  recordedDate      DateTime
+  setNumber         Int              @default(1)
+  weight            Float
+  reps              Int
+  estimated1RM      Float
+  note              String?
+  programExerciseId String?
+  programExercise   ProgramExercise? @relation(fields: [programExerciseId], references: [id], onDelete: SetNull)
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+
+  @@unique([clientId, exerciseName, recordedDate, setNumber])
+  @@index([clientId, exerciseName, recordedDate])
+  @@index([programExerciseId])
+}
+
+// Kamus gerakan bersama — dipakai lintas trainer sebagai referensi saat
+// menyusun program (dibawa dari kamus gerakan olympus-gym-tracker). Trainer
+// mana pun bisa menambah gerakan baru ke kamus ini; ProgramExercise sendiri
+// tetap menyimpan exerciseName sebagai teks bebas (bukan foreign key ke
+// sini), jadi kamus ini murni alat bantu pencarian/isian, bukan constraint.
+model Movement {
+  id              String   @id @default(cuid())
+  code            String?
+  name            String   @unique
+  primaryMuscle   String?
+  secondaryMuscle String?
+  category        String?
+  equipment       String?
+  repRangeHint    String?
+  setRangeHint    String?
+  createdAt       DateTime @default(now())
+
+  @@index([category])
+  @@index([primaryMuscle])
+}
+
+// Rencana program latihan seorang klien, disusun trainer di muka lalu
+// dijalankan sesi demi sesi. Satu klien bisa punya beberapa program dari
+// waktu ke waktu; hanya satu yang isActive untuk ditampilkan sebagai program
+// berjalan saat ini.
+model Program {
+  id        String   @id @default(cuid())
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  name      String
+  startDate DateTime
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  days ProgramDay[]
+
+  @@index([clientId])
+}
+
+model ProgramDay {
+  id        String   @id @default(cuid())
+  programId String
+  program   Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+  dayLabel  String
+  order     Int
+
+  exercises ProgramExercise[]
+
+  @@unique([programId, order])
+}
+
+// Satu gerakan rencana dalam satu hari program: target set/reps/beban.
+// Realisasinya dicatat sebagai LoadEntry yang menunjuk balik ke sini.
+model ProgramExercise {
+  id           String     @id @default(cuid())
+  dayId        String
+  day          ProgramDay @relation(fields: [dayId], references: [id], onDelete: Cascade)
+  exerciseName String
+  targetSets   Int?
+  targetReps   String?
+  targetWeight Float?
+  note         String?
+  order        Int
+
+  loadEntries LoadEntry[]
+
+  @@index([dayId])
+}
+
+// Target kalori/makro harian klien, diset trainer. Satu baris standing
+// target per klien (bukan riwayat per tanggal) — berlaku sampai diubah lagi.
+model NutritionTarget {
+  id        String   @id @default(cuid())
+  clientId  String   @unique
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  calories  Int?
+  protein   Float?
+  carbs     Float?
+  fat       Float?
+  updatedAt DateTime @updatedAt
+}
+
+// Catatan asupan nutrisi aktual klien per tanggal, dibandingkan ke
+// NutritionTarget. note dipakai untuk catatan bebas (mis. "kurangi gula").
+// Simpan ulang di tanggal yang sama akan menimpa (upsert).
+model NutritionLog {
+  id           String   @id @default(cuid())
+  clientId     String
+  client       Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  recordedDate DateTime
+  calories     Int?
+  protein      Float?
+  carbs        Float?
+  fat          Float?
+  note         String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@unique([clientId, recordedDate])
+  @@index([clientId, recordedDate])
+}
