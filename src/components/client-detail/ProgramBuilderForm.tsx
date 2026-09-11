@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { MovementDTO } from "@/lib/types";
+import type { MovementDTO, ProgramDTO } from "@/lib/types";
 import { MovementCombobox } from "./MovementCombobox";
 
 type ExerciseDraft = {
@@ -31,17 +31,40 @@ function todayStr() {
   return new Date().toISOString().slice(0, 10);
 }
 
+function toDraft(program: ProgramDTO): { name: string; startDate: string; days: DayDraft[] } {
+  return {
+    name: program.name,
+    startDate: program.startDate.slice(0, 10),
+    days: program.days.map((d) => ({
+      dayLabel: d.dayLabel,
+      date: d.date ? d.date.slice(0, 10) : "",
+      exercises: d.exercises.map((ex) => ({
+        exerciseName: ex.exerciseName,
+        targetSets: ex.targetSets != null ? String(ex.targetSets) : "",
+        targetReps: ex.targetReps ?? "",
+        targetWeight: ex.targetWeight != null ? String(ex.targetWeight) : "",
+        note: ex.note ?? "",
+      })),
+    })),
+  };
+}
+
 export function ProgramBuilderForm({
   clientId,
   onDone,
+  editingProgram,
 }: {
   clientId: string;
   onDone: () => void;
+  editingProgram?: ProgramDTO;
 }) {
   const router = useRouter();
-  const [name, setName] = useState("");
-  const [startDate, setStartDate] = useState(todayStr());
-  const [days, setDays] = useState<DayDraft[]>([emptyDay(1)]);
+  const initial = editingProgram
+    ? toDraft(editingProgram)
+    : { name: "", startDate: todayStr(), days: [emptyDay(1)] };
+  const [name, setName] = useState(initial.name);
+  const [startDate, setStartDate] = useState(initial.startDate);
+  const [days, setDays] = useState<DayDraft[]>(initial.days);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [movements, setMovements] = useState<MovementDTO[]>([]);
@@ -111,8 +134,11 @@ export function ProgramBuilderForm({
             })),
         })),
       };
-      const res = await fetch(`/api/clients/${clientId}/programs`, {
-        method: "POST",
+      const url = editingProgram
+        ? `/api/clients/${clientId}/programs/${editingProgram.id}`
+        : `/api/clients/${clientId}/programs`;
+      const res = await fetch(url, {
+        method: editingProgram ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
@@ -130,6 +156,7 @@ export function ProgramBuilderForm({
 
   return (
     <form onSubmit={handleSubmit} className="card p-4 flex flex-col gap-4">
+      <p className="label">{editingProgram ? "Edit program" : "Susun program baru"}</p>
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="prog-name">Nama program</label>
@@ -248,7 +275,7 @@ export function ProgramBuilderForm({
       {error && <p className="text-sm text-[var(--danger)]">{error}</p>}
       <div className="flex gap-2">
         <button type="submit" className="btn-primary" disabled={loading}>
-          {loading ? "Menyimpan..." : "Simpan program"}
+          {loading ? "Menyimpan..." : editingProgram ? "Simpan perubahan" : "Simpan program"}
         </button>
         <button type="button" className="btn-secondary" onClick={onDone}>
           Batal

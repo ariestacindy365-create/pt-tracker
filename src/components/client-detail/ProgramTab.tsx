@@ -10,6 +10,8 @@ import { ExerciseProgressChart } from "./ExerciseProgressChart";
 import { ProgramCalendar } from "./ProgramCalendar";
 import { OneRMCalculator } from "./OneRMCalculator";
 
+type BuildMode = "none" | "new" | "edit";
+
 export function ProgramTab({
   clientId,
   programs,
@@ -20,11 +22,13 @@ export function ProgramTab({
   loadEntries: LoadEntryDTO[];
 }) {
   const router = useRouter();
-  const [building, setBuilding] = useState(false);
+  const [buildMode, setBuildMode] = useState<BuildMode>("none");
+  const [planExpanded, setPlanExpanded] = useState(false);
   const apiBase = `/api/clients/${clientId}`;
 
   const activeProgram = programs.find((p) => p.isActive);
   const pastPrograms = programs.filter((p) => !p.isActive);
+  const building = buildMode !== "none";
 
   async function handleReactivate(programId: string) {
     const res = await fetch(`${apiBase}/programs/${programId}`, {
@@ -46,7 +50,7 @@ export function ProgramTab({
       {!activeProgram && !building && (
         <div className="card p-4 flex items-center justify-between">
           <p className="text-sm text-[var(--muted)]">Belum ada program aktif untuk klien ini.</p>
-          <button className="btn-primary" onClick={() => setBuilding(true)}>
+          <button className="btn-primary" onClick={() => setBuildMode("new")}>
             + Susun Program
           </button>
         </div>
@@ -54,56 +58,75 @@ export function ProgramTab({
 
       {activeProgram && !building && (
         <div className="card p-4 flex flex-col gap-3">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between gap-2 flex-wrap">
             <div>
               <p className="font-medium">{activeProgram.name}</p>
               <p className="text-xs text-[var(--muted)]">
                 Mulai {new Date(activeProgram.startDate).toLocaleDateString("id-ID")}
               </p>
             </div>
-            <button className="btn-secondary text-sm" onClick={() => setBuilding(true)}>
-              + Program baru
-            </button>
+            <div className="flex gap-2">
+              <button className="btn-secondary text-sm" onClick={() => setBuildMode("edit")}>
+                Edit program
+              </button>
+              <button className="btn-secondary text-sm" onClick={() => setBuildMode("new")}>
+                + Program baru
+              </button>
+            </div>
           </div>
 
-          <div className="grid gap-2 sm:grid-cols-2">
-            {activeProgram.days.map((day) => (
-              <div key={day.id} className="rounded-lg border border-[var(--border)] p-3">
-                <p className="font-medium text-sm mb-1">
-                  {day.dayLabel}
-                  {day.date && (
-                    <span className="font-normal text-[var(--muted)]">
-                      {" "}
-                      — {new Date(day.date).toLocaleDateString("id-ID", { weekday: "short", day: "2-digit", month: "short" })}
-                    </span>
-                  )}
-                </p>
-                <ul className="text-sm text-[var(--muted)] flex flex-col gap-0.5">
-                  {day.exercises.map((ex) => (
-                    <li key={ex.id}>
-                      {ex.exerciseName}
-                      {ex.targetSets || ex.targetReps ? ` — ${ex.targetSets ?? "?"}x${ex.targetReps ?? "?"}` : ""}
-                      {ex.targetWeight ? ` @ ${ex.targetWeight}kg` : ""}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <button
+            type="button"
+            onClick={() => setPlanExpanded((v) => !v)}
+            className="text-sm text-[var(--accent)] font-medium self-start"
+          >
+            {planExpanded ? "Sembunyikan rencana ▲" : "Lihat rencana lengkap ▾"}
+          </button>
+
+          {planExpanded && (
+            <div className="grid gap-2 sm:grid-cols-2">
+              {activeProgram.days.map((day) => (
+                <div key={day.id} className="rounded-lg border border-[var(--border)] p-3">
+                  <p className="font-medium text-sm mb-1">
+                    {day.dayLabel}
+                    {day.date && (
+                      <span className="font-normal text-[var(--muted)]">
+                        {" "}
+                        — {new Date(day.date).toLocaleDateString("id-ID", { weekday: "short", day: "2-digit", month: "short" })}
+                      </span>
+                    )}
+                  </p>
+                  <ul className="text-sm text-[var(--muted)] flex flex-col gap-0.5">
+                    {day.exercises.map((ex) => (
+                      <li key={ex.id}>
+                        {ex.exerciseName}
+                        {ex.targetSets || ex.targetReps ? ` — ${ex.targetSets ?? "?"}x${ex.targetReps ?? "?"}` : ""}
+                        {ex.targetWeight ? ` @ ${ex.targetWeight}kg` : ""}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
 
       {building && (
-        <ProgramBuilderForm clientId={clientId} onDone={() => setBuilding(false)} />
+        <ProgramBuilderForm
+          clientId={clientId}
+          editingProgram={buildMode === "edit" ? activeProgram : undefined}
+          onDone={() => setBuildMode("none")}
+        />
+      )}
+
+      {activeProgram && !building && (
+        <SessionLogger apiBase={apiBase} days={activeProgram.days} />
       )}
 
       {!building && <ProgramCalendar programs={programs} loadEntries={loadEntries} />}
 
       {!building && <OneRMCalculator />}
-
-      {activeProgram && !building && (
-        <SessionLogger apiBase={apiBase} days={activeProgram.days} />
-      )}
 
       {pastPrograms.length > 0 && !building && (
         <div className="card p-4">

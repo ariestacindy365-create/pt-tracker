@@ -3,8 +3,9 @@ import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
 import { getOwnedClient } from "@/lib/clients";
+import { programInputSchema } from "@/lib/programSchema";
 
-const patchSchema = z.object({
+const activateSchema = z.object({
   isActive: z.boolean(),
 });
 
@@ -28,7 +29,61 @@ export async function PATCH(
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json().catch(() => null);
-  const parsed = patchSchema.safeParse(body);
+
+  // Full edit: name/startDate/days present — rebuild the day/exercise tree
+  // in place (same pattern olympus-gym-tracker uses for its program editor:
+  // delete and recreate the plan rows on save). LoadEntry rows that pointed
+  // at the old ProgramExercise ids just lose that link (onDelete: SetNull)
+  // — their history stays, they just stop being "linked to the plan".
+  if (body && typeof body === "object" && "days" in body) {
+    const parsed = programInputSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: parsed.error.issues[0]?.message ?? "Data tidak valid" },
+        { status: 400 }
+      );
+    }
+    const { name, startDate, days } = parsed.data;
+
+    const program = await prisma.$transaction(async (tx) => {
+      await tx.programDay.deleteMany({ where: { programId } });
+      return tx.program.update({
+        where: { id: programId },
+        data: {
+          name,
+          startDate: new Date(startDate),
+          days: {
+            create: days.map((day, dayIndex) => ({
+              dayLabel: day.dayLabel,
+              date: day.date ? new Date(day.date) : null,
+              order: dayIndex,
+              exercises: {
+                create: day.exercises.map((ex, exIndex) => ({
+                  exerciseName: ex.exerciseName,
+                  targetSets: ex.targetSets ?? null,
+                  targetReps: ex.targetReps || null,
+                  targetWeight: ex.targetWeight ?? null,
+                  note: ex.note || null,
+                  order: exIndex,
+                })),
+              },
+            })),
+          },
+        },
+        include: {
+          days: {
+            orderBy: { order: "asc" },
+            include: { exercises: { orderBy: { order: "asc" } } },
+          },
+        },
+      });
+    });
+
+    return NextResponse.json({ program });
+  }
+
+  // Otherwise: just activate/deactivate.
+  const parsed = activateSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json({ error: "Data tidak valid" }, { status: 400 });
   }

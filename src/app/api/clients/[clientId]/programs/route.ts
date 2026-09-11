@@ -1,28 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
 import { getOwnedClient } from "@/lib/clients";
-
-const exerciseSchema = z.object({
-  exerciseName: z.string().trim().min(1, "Nama gerakan wajib diisi"),
-  targetSets: z.coerce.number().int().positive().optional().nullable(),
-  targetReps: z.string().trim().optional().nullable(),
-  targetWeight: z.coerce.number().positive().optional().nullable(),
-  note: z.string().trim().optional().nullable(),
-});
-
-const daySchema = z.object({
-  dayLabel: z.string().trim().min(1, "Label hari wajib diisi"),
-  date: z.string().trim().optional().nullable(),
-  exercises: z.array(exerciseSchema).min(1, "Minimal 1 gerakan per hari"),
-});
-
-const schema = z.object({
-  name: z.string().trim().min(1, "Nama program wajib diisi"),
-  startDate: z.string().min(1, "Tanggal mulai wajib diisi"),
-  days: z.array(daySchema).min(1, "Minimal 1 hari"),
-});
+import { programInputSchema } from "@/lib/programSchema";
 
 export async function GET(
   _req: NextRequest,
@@ -61,7 +41,7 @@ export async function POST(
   if (!client) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json().catch(() => null);
-  const parsed = schema.safeParse(body);
+  const parsed = programInputSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
       { error: parsed.error.issues[0]?.message ?? "Data tidak valid" },
