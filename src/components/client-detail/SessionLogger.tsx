@@ -119,28 +119,52 @@ export function SessionLogger({
         return;
       }
 
-      for (const { ex, person, row, setNumber } of entries) {
-        const res = await fetch(`${person.apiBase}/loads`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            exerciseName: ex.exerciseName,
-            recordedDate,
-            setNumber,
-            weight: row.weight || "0",
-            reps: row.reps,
-            programExerciseId: ex.id,
-          }),
-        });
-        if (!res.ok) {
-          const data = await res.json();
-          setError(
-            multiPerson
-              ? `Gagal simpan set ${person.name}: ${data.error ?? "error"}`
-              : data.error ?? "Gagal menyimpan sesi"
-          );
-          return;
-        }
+      // One bulk request per person (not per set) — a couple/group session
+      // with several exercises x sets x people can be dozens of individual
+      // sets otherwise, and even parallelized, that many separate
+      // round-trips make "Simpan sesi" feel like it hangs.
+      const entriesByPerson = new Map<string, typeof entries>();
+      for (const entry of entries) {
+        const list = entriesByPerson.get(entry.person.id) ?? [];
+        list.push(entry);
+        entriesByPerson.set(entry.person.id, list);
+      }
+
+      const results = await Promise.allSettled(
+        Array.from(entriesByPerson.entries()).map(([, personEntries]) => {
+          const person = personEntries[0].person;
+          return fetch(`${person.apiBase}/loads/bulk`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              entries: personEntries.map(({ ex, row, setNumber }) => ({
+                exerciseName: ex.exerciseName,
+                recordedDate,
+                setNumber,
+                weight: row.weight || "0",
+                reps: row.reps,
+                programExerciseId: ex.id,
+              })),
+            }),
+          }).then(async (res) => {
+            if (!res.ok) {
+              const data = await res.json().catch(() => ({}));
+              throw new Error(
+                multiPerson
+                  ? `${person.name}: ${data.error ?? "gagal"}`
+                  : data.error ?? "Gagal menyimpan sesi"
+              );
+            }
+          });
+        })
+      );
+
+      const failures = results.filter(
+        (r): r is PromiseRejectedResult => r.status === "rejected"
+      );
+      if (failures.length > 0) {
+        setError(failures.map((f) => f.reason?.message ?? "Gagal menyimpan").join("; "));
+        return;
       }
 
       setActuals({});

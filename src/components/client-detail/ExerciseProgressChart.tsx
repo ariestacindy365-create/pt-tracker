@@ -24,8 +24,9 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
   const [selected, setSelected] = useState<string | null>(null);
   const activeExercise = selected && exerciseNames.includes(selected) ? selected : exerciseNames[0] ?? "";
 
-  // Best (highest) estimated 1RM per date for the selected exercise — one
-  // point per day even if several sets were logged that day.
+  // Best (highest) actual weight lifted per date for the selected exercise
+  // — one point per day even if several sets were logged that day. Plots
+  // the real beban, not the calculated/estimated 1RM.
   const chartData = useMemo(() => {
     if (!activeExercise) return [];
     const byDate = new Map<string, number>();
@@ -33,11 +34,11 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
       if (l.exerciseName !== activeExercise) continue;
       const key = l.recordedDate.slice(0, 10);
       const current = byDate.get(key) ?? 0;
-      if (l.estimated1RM > current) byDate.set(key, l.estimated1RM);
+      if (l.weight > current) byDate.set(key, l.weight);
     }
     return Array.from(byDate.entries())
       .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(([iso, best1RM]) => ({ iso, date: fmtDate(iso), best1RM }));
+      .map(([iso, weight]) => ({ iso, date: fmtDate(iso), weight }));
   }, [loadEntries, activeExercise]);
 
   if (exerciseNames.length === 0) {
@@ -51,7 +52,7 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
 
   const first = chartData[0];
   const last = chartData[chartData.length - 1];
-  const delta = first && last ? Math.round((last.best1RM - first.best1RM) * 100) / 100 : 0;
+  const delta = first && last ? Math.round((last.weight - first.weight) * 100) / 100 : 0;
   const trend = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
 
   return (
@@ -59,7 +60,7 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <label className="label" htmlFor="ex-select">
-            Grafik progres per gerakan (estimasi 1RM)
+            Grafik progres per gerakan (beban aktual)
           </label>
           <select
             id="ex-select"
@@ -102,7 +103,7 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
               <Tooltip />
               <Line
                 type="monotone"
-                dataKey="best1RM"
+                dataKey="weight"
                 stroke="var(--accent)"
                 strokeWidth={2}
                 dot={{ r: 3 }}
