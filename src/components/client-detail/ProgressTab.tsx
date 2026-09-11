@@ -75,7 +75,6 @@ export function ProgressTab({
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("Hapus data ini?")) return;
     setHiddenIds((prev) => new Set(prev).add(id));
     const res = await fetch(`${apiBase}/body-metrics/${id}`, {
       method: "DELETE",

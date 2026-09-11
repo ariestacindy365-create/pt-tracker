@@ -22,7 +22,6 @@ export function LoadHistoryTable({
   const [hiddenIds, setHiddenIds] = useState<Set<string>>(new Set());
 
   async function handleDelete(id: string) {
-    if (!confirm("Hapus catatan set ini?")) return;
     setHiddenIds((prev) => new Set(prev).add(id));
     const res = await fetch(`${apiBase}/loads/${id}`, { method: "DELETE" });
     if (res.ok) {

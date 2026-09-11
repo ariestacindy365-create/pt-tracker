@@ -104,7 +104,6 @@ export function NutritionTab({
   }
 
   async function handleDeleteLog(id: string) {
-    if (!confirm("Hapus catatan ini?")) return;
     setHiddenIds((prev) => new Set(prev).add(id));
     const res = await fetch(`${apiBase}/nutrition/logs/${id}`, {
       method: "DELETE",

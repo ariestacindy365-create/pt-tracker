@@ -43,7 +43,6 @@ export function ProgramTab({
   }
 
   async function handleDeleteProgram(programId: string) {
-    if (!confirm("Hapus program ini beserta rencana harinya? (riwayat set latihan tidak ikut terhapus)")) return;
     setHiddenProgramIds((prev) => new Set(prev).add(programId));
     const res = await fetch(`${apiBase}/programs/${programId}`, { method: "DELETE" });
     if (res.ok) {
