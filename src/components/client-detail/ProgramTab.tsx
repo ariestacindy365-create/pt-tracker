@@ -131,7 +131,11 @@ export function ProgramTab({
       )}
 
       {activeProgram && !building && (
-        <SessionLogger apiBase={apiBase} days={activeProgram.days} />
+        <SessionLogger
+          apiBase={apiBase}
+          days={activeProgram.days}
+          people={[activeProgram.owner, ...activeProgram.participants]}
+        />
       )}
 
       {!building && <ProgramCalendar programs={programs} loadEntries={loadEntries} />}

@@ -32,6 +32,10 @@ export function MovementCombobox({
   placeholder,
 }: Props) {
   const [open, setOpen] = useState(false);
+  // Flip the dropdown above the input when there isn't enough room below —
+  // otherwise, on a field near the bottom of the form, the panel can cover
+  // the Save button and swallow the click that was meant for it.
+  const [dropUp, setDropUp] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState(ALL);
   const [muscleFilter, setMuscleFilter] = useState(ALL);
   const [adding, setAdding] = useState(false);
@@ -67,6 +71,17 @@ export function MovementCombobox({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [open]);
+
+  function openDropdown() {
+    const rect = wrapperRef.current?.getBoundingClientRect();
+    if (rect) {
+      const panelHeight = 320; // matches max-h-80
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      setDropUp(spaceBelow < panelHeight && spaceAbove > spaceBelow);
+    }
+    setOpen(true);
+  }
 
   function pick(m: MovementDTO) {
     onChange(m.name);
@@ -125,10 +140,10 @@ export function MovementCombobox({
         className="input"
         placeholder={placeholder ?? "Cari/ketik gerakan..."}
         value={value}
-        onFocus={() => setOpen(true)}
+        onFocus={openDropdown}
         onChange={(e) => {
           onChange(e.target.value);
-          setOpen(true);
+          openDropdown();
         }}
         onKeyDown={(e) => {
           if (e.key === "Escape") {
@@ -139,7 +154,11 @@ export function MovementCombobox({
       />
 
       {open && (
-        <div className="absolute z-20 mt-1 flex max-h-80 w-80 flex-col overflow-hidden rounded-md border border-[var(--border)] bg-[var(--surface)] shadow-lg">
+        <div
+          className={`absolute z-20 flex max-h-80 w-80 flex-col overflow-hidden rounded-md border border-[var(--border)] bg-[var(--surface)] shadow-lg ${
+            dropUp ? "bottom-full mb-1" : "top-full mt-1"
+          }`}
+        >
           {adding ? (
             <div className="flex flex-col gap-2 overflow-y-auto p-3">
               <div className="flex items-center justify-between">
