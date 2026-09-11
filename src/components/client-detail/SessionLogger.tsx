@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ProgramDayDTO, ProgramExerciseDTO } from "@/lib/types";
+import { isTimerBased } from "@/lib/loads";
 
 type SetRow = { weight: string; reps: string };
 type Person = { id: string; name: string; apiBase: string };
@@ -102,16 +103,19 @@ export function SessionLogger({
     setError(null);
     setSaving(true);
     try {
+      // reps/durasi is the "this set happened" signal; beban is optional
+      // (defaults to 0 = bodyweight) since timer gerakan like plank/hang
+      // often have no external load.
       const entries = selectedDay.exercises.flatMap((ex) =>
         allPeople.flatMap((person) =>
           getRows(ex, person.id)
             .map((row, idx) => ({ ex, person, row, setNumber: idx + 1 }))
-            .filter(({ row }) => row.weight && row.reps)
+            .filter(({ row }) => row.reps)
         )
       );
 
       if (entries.length === 0) {
-        setError("Isi minimal satu set (beban & reps).");
+        setError("Isi minimal satu set (reps/durasi).");
         return;
       }
 
@@ -123,7 +127,7 @@ export function SessionLogger({
             exerciseName: ex.exerciseName,
             recordedDate,
             setNumber,
-            weight: row.weight,
+            weight: row.weight || "0",
             reps: row.reps,
             programExerciseId: ex.id,
           }),
@@ -181,12 +185,14 @@ export function SessionLogger({
         <div className="flex flex-col gap-4">
           {selectedDay.exercises.map((ex) => {
             const rowCount = getRows(ex, allPeople[0].id).length;
+            const timer = isTimerBased(ex.targetReps);
             return (
               <div key={ex.id} className="flex flex-col gap-2">
                 <div>
                   <p className="text-sm font-medium">{ex.exerciseName}</p>
                   <p className="text-xs text-[var(--muted)]">
                     Target: {ex.targetSets ?? "-"}x{ex.targetReps ?? "-"} {ex.targetWeight ? `@ ${ex.targetWeight}kg` : ""}
+                    {timer && " · timer"}
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">
@@ -220,14 +226,14 @@ export function SessionLogger({
                                   <input
                                     type="number"
                                     step="0.5"
-                                    placeholder="kg"
+                                    placeholder={timer ? "kg (opsional)" : "kg"}
                                     className="input"
                                     value={row.weight}
                                     onChange={(e) => setSetValue(ex, person.id, setIdx, "weight", e.target.value)}
                                   />
                                   <input
                                     type="number"
-                                    placeholder="reps"
+                                    placeholder={timer ? "detik" : "reps"}
                                     className="input"
                                     value={row.reps}
                                     onChange={(e) => setSetValue(ex, person.id, setIdx, "reps", e.target.value)}
@@ -242,7 +248,9 @@ export function SessionLogger({
                       <div key={setIdx} className="grid grid-cols-[3rem_1fr_1fr_auto] gap-2 items-end">
                         <p className="text-xs text-[var(--muted)] pb-2">Set {setIdx + 1}</p>
                         <div>
-                          <label className="label">Beban aktual (kg)</label>
+                          <label className="label">
+                            {timer ? "Beban (opsional)" : "Beban aktual (kg)"}
+                          </label>
                           <input
                             type="number"
                             step="0.5"
@@ -252,7 +260,7 @@ export function SessionLogger({
                           />
                         </div>
                         <div>
-                          <label className="label">Reps aktual</label>
+                          <label className="label">{timer ? "Durasi (detik)" : "Reps aktual"}</label>
                           <input
                             type="number"
                             className="input"

@@ -10,6 +10,15 @@ export function weightForReps(oneRM: number, reps: number): number {
   return Math.round((oneRM / (1 + reps / 30)) * 100) / 100;
 }
 
+// Matches target-reps text that's actually a duration, e.g. `20s`, `20"`,
+// `30 detik`, `1 menit` — plank/hang/hold-style gerakan where the trainer
+// logs seconds held instead of a rep count.
+const TIMER_PATTERN = /^\s*\d+(\.\d+)?\s*("|s\b|sec|detik|menit|min\b)/i;
+
+export function isTimerBased(targetReps: string | null | undefined): boolean {
+  return !!targetReps && TIMER_PATTERN.test(targetReps.trim());
+}
+
 export type RepWeightRow = { reps: number; weight: number; percent: number };
 
 // Same rep targets olympus-gym-tracker's "Estimasi Beban" table uses.

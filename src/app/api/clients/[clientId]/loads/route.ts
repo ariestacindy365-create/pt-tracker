@@ -9,8 +9,10 @@ const schema = z.object({
   exerciseName: z.string().trim().min(1, "Nama gerakan wajib diisi"),
   recordedDate: z.string().min(1, "Tanggal wajib diisi"),
   setNumber: z.coerce.number().int().positive().default(1),
-  weight: z.coerce.number().positive("Beban harus lebih dari 0"),
-  reps: z.coerce.number().int().positive("Repetisi harus lebih dari 0"),
+  // 0 is valid — bodyweight/timer gerakan (plank, hang, dll) often have no
+  // external load.
+  weight: z.coerce.number().nonnegative("Beban tidak boleh minus"),
+  reps: z.coerce.number().int().positive("Repetisi/durasi harus lebih dari 0"),
   note: z.string().trim().optional().nullable(),
   programExerciseId: z.string().trim().optional().nullable(),
 });

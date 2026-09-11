@@ -66,8 +66,10 @@ export function LoadHistoryTable({
               <td className="p-3">{fmtDate(l.recordedDate)}</td>
               <td className="p-3">{l.exerciseName}</td>
               <td className="p-3">{l.setNumber}</td>
-              <td className="p-3">{l.weight}kg x {l.reps}</td>
-              <td className="p-3 font-medium">{l.estimated1RM}kg</td>
+              <td className="p-3">
+                {l.weight > 0 ? `${l.weight}kg x ${l.reps}` : `${l.reps} detik/reps`}
+              </td>
+              <td className="p-3 font-medium">{l.weight > 0 ? `${l.estimated1RM}kg` : "-"}</td>
               <td className="p-3 text-right">
                 <button onClick={() => handleDelete(l.id)} className="text-[var(--danger)] text-xs hover:underline">
                   Hapus
