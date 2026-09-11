@@ -24,10 +24,13 @@ export function ProgramTab({
   const router = useRouter();
   const [buildMode, setBuildMode] = useState<BuildMode>("none");
   const [planExpanded, setPlanExpanded] = useState(false);
+  // Hide a deleted past program immediately instead of waiting for the
+  // DELETE request + full page refresh to round-trip.
+  const [hiddenProgramIds, setHiddenProgramIds] = useState<Set<string>>(new Set());
   const apiBase = `/api/clients/${clientId}`;
 
   const activeProgram = programs.find((p) => p.isActive);
-  const pastPrograms = programs.filter((p) => !p.isActive);
+  const pastPrograms = programs.filter((p) => !p.isActive && !hiddenProgramIds.has(p.id));
   const building = buildMode !== "none";
 
   async function handleReactivate(programId: string) {
@@ -41,8 +44,18 @@ export function ProgramTab({
 
   async function handleDeleteProgram(programId: string) {
     if (!confirm("Hapus program ini beserta rencana harinya? (riwayat set latihan tidak ikut terhapus)")) return;
+    setHiddenProgramIds((prev) => new Set(prev).add(programId));
     const res = await fetch(`${apiBase}/programs/${programId}`, { method: "DELETE" });
-    if (res.ok) router.refresh();
+    if (res.ok) {
+      router.refresh();
+    } else {
+      setHiddenProgramIds((prev) => {
+        const next = new Set(prev);
+        next.delete(programId);
+        return next;
+      });
+      alert("Gagal menghapus. Coba lagi.");
+    }
   }
 
   return (

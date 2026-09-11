@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { LoadEntryDTO } from "@/lib/types";
 
@@ -15,16 +16,30 @@ export function LoadHistoryTable({
   loadEntries: LoadEntryDTO[];
 }) {
   const router = useRouter();
+  // Hide deleted rows immediately instead of waiting for the DELETE request
+  // + full page refresh to round-trip — feels instant, and un-hides itself
+  // if the request actually fails.
+  const [hiddenIds, setHiddenIds] = useState<Set<string>>(new Set());
 
   async function handleDelete(id: string) {
     if (!confirm("Hapus catatan set ini?")) return;
+    setHiddenIds((prev) => new Set(prev).add(id));
     const res = await fetch(`${apiBase}/loads/${id}`, { method: "DELETE" });
-    if (res.ok) router.refresh();
+    if (res.ok) {
+      router.refresh();
+    } else {
+      setHiddenIds((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+      alert("Gagal menghapus. Coba lagi.");
+    }
   }
 
-  const sorted = [...loadEntries].sort(
-    (a, b) => new Date(b.recordedDate).getTime() - new Date(a.recordedDate).getTime()
-  );
+  const sorted = [...loadEntries]
+    .filter((l) => !hiddenIds.has(l.id))
+    .sort((a, b) => new Date(b.recordedDate).getTime() - new Date(a.recordedDate).getTime());
 
   return (
     <div className="card overflow-x-auto">

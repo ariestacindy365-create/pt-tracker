@@ -40,6 +40,9 @@ export function NutritionTab({
   const [note, setNote] = useState("");
   const [logError, setLogError] = useState<string | null>(null);
   const [logSaving, setLogSaving] = useState(false);
+  // Hide deleted rows immediately instead of waiting for the DELETE
+  // request + full page refresh to round-trip.
+  const [hiddenIds, setHiddenIds] = useState<Set<string>>(new Set());
 
   async function handleSaveTarget(e: React.FormEvent) {
     e.preventDefault();
@@ -102,11 +105,23 @@ export function NutritionTab({
 
   async function handleDeleteLog(id: string) {
     if (!confirm("Hapus catatan ini?")) return;
+    setHiddenIds((prev) => new Set(prev).add(id));
     const res = await fetch(`${apiBase}/nutrition/logs/${id}`, {
       method: "DELETE",
     });
-    if (res.ok) router.refresh();
+    if (res.ok) {
+      router.refresh();
+    } else {
+      setHiddenIds((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+      alert("Gagal menghapus. Coba lagi.");
+    }
   }
+
+  const visibleLogs = logs.filter((l) => !hiddenIds.has(l.id));
 
   return (
     <div className="flex flex-col gap-4">
@@ -196,12 +211,12 @@ export function NutritionTab({
             </tr>
           </thead>
           <tbody>
-            {logs.length === 0 && (
+            {visibleLogs.length === 0 && (
               <tr>
                 <td colSpan={7} className="p-3 text-[var(--muted)]">Belum ada catatan.</td>
               </tr>
             )}
-            {logs.map((l) => {
+            {visibleLogs.map((l) => {
               const overCal = target?.calories && l.calories && l.calories > target.calories;
               return (
                 <tr key={l.id} className="border-b border-[var(--border)] last:border-0">

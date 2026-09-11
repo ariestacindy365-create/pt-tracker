@@ -37,6 +37,9 @@ export function ProgressTab({
   const [note, setNote] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  // Hide deleted rows immediately instead of waiting for the DELETE
+  // request + full page refresh to round-trip.
+  const [hiddenIds, setHiddenIds] = useState<Set<string>>(new Set());
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -73,13 +76,25 @@ export function ProgressTab({
 
   async function handleDelete(id: string) {
     if (!confirm("Hapus data ini?")) return;
+    setHiddenIds((prev) => new Set(prev).add(id));
     const res = await fetch(`${apiBase}/body-metrics/${id}`, {
       method: "DELETE",
     });
-    if (res.ok) router.refresh();
+    if (res.ok) {
+      router.refresh();
+    } else {
+      setHiddenIds((prev) => {
+        const next = new Set(prev);
+        next.delete(id);
+        return next;
+      });
+      alert("Gagal menghapus. Coba lagi.");
+    }
   }
 
-  const chartData = bodyMetrics.map((m) => ({
+  const visibleMetrics = bodyMetrics.filter((m) => !hiddenIds.has(m.id));
+
+  const chartData = visibleMetrics.map((m) => ({
     date: fmtDate(m.recordedDate),
     weight: m.weight,
     bodyFatPercent: m.bodyFatPercent,
@@ -87,7 +102,7 @@ export function ProgressTab({
     visceralFat: m.visceralFat,
   }));
 
-  const sorted = [...bodyMetrics].sort(
+  const sorted = [...visibleMetrics].sort(
     (a, b) => new Date(b.recordedDate).getTime() - new Date(a.recordedDate).getTime()
   );
 
