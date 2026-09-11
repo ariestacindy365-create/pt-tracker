@@ -4,18 +4,11 @@ import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
 import { getOwnedClient } from "@/lib/clients";
 import { programInputSchema } from "@/lib/programSchema";
+import { getAccessibleProgram, programInclude } from "@/lib/programs";
 
 const activateSchema = z.object({
   isActive: z.boolean(),
 });
-
-async function getOwnedProgram(trainerId: string, clientId: string, programId: string) {
-  const client = await getOwnedClient(trainerId, clientId);
-  if (!client) return null;
-  const program = await prisma.program.findUnique({ where: { id: programId } });
-  if (!program || program.clientId !== clientId) return null;
-  return program;
-}
 
 export async function PATCH(
   req: NextRequest,
@@ -25,7 +18,10 @@ export async function PATCH(
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { clientId, programId } = await params;
-  const existing = await getOwnedProgram(session.trainerId, clientId, programId);
+  const client = await getOwnedClient(session.trainerId, clientId);
+  if (!client) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  const existing = await getAccessibleProgram(clientId, programId);
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const body = await req.json().catch(() => null);
@@ -43,10 +39,23 @@ export async function PATCH(
         { status: 400 }
       );
     }
-    const { name, startDate, days } = parsed.data;
+    const { name, startDate, days, participantClientIds = [] } = parsed.data;
+
+    const uniqueParticipantIds = Array.from(new Set(participantClientIds)).filter(
+      (id) => id !== existing.clientId
+    );
+    if (uniqueParticipantIds.length > 0) {
+      const validParticipants = await prisma.client.count({
+        where: { id: { in: uniqueParticipantIds }, trainerId: session.trainerId },
+      });
+      if (validParticipants !== uniqueParticipantIds.length) {
+        return NextResponse.json({ error: "Klien tambahan tidak valid" }, { status: 400 });
+      }
+    }
 
     const program = await prisma.$transaction(async (tx) => {
       await tx.programDay.deleteMany({ where: { programId } });
+      await tx.programParticipant.deleteMany({ where: { programId } });
       return tx.program.update({
         where: { id: programId },
         data: {
@@ -69,13 +78,11 @@ export async function PATCH(
               },
             })),
           },
-        },
-        include: {
-          days: {
-            orderBy: { order: "asc" },
-            include: { exercises: { orderBy: { order: "asc" } } },
+          participants: {
+            create: uniqueParticipantIds.map((id) => ({ clientId: id })),
           },
         },
+        include: programInclude,
       });
     });
 
@@ -89,9 +96,9 @@ export async function PATCH(
   }
 
   if (parsed.data.isActive) {
-    // Only one active program at a time.
+    // Only one active program at a time for the program's owner client.
     await prisma.program.updateMany({
-      where: { clientId, isActive: true },
+      where: { clientId: existing.clientId, isActive: true },
       data: { isActive: false },
     });
   }
@@ -112,7 +119,10 @@ export async function DELETE(
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { clientId, programId } = await params;
-  const existing = await getOwnedProgram(session.trainerId, clientId, programId);
+  const client = await getOwnedClient(session.trainerId, clientId);
+  if (!client) return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  const existing = await getAccessibleProgram(clientId, programId);
   if (!existing) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   await prisma.program.delete({ where: { id: programId } });

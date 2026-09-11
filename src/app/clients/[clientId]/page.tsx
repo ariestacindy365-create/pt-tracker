@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { requireTrainer } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { getOwnedClient } from "@/lib/clients";
+import { programInclude, programsWhereAccessible } from "@/lib/programs";
 import { NavBar } from "@/components/NavBar";
 import { ClientDetailTabs } from "@/components/client-detail/ClientDetailTabs";
 
@@ -27,14 +28,9 @@ export default async function ClientDetailPage({
         orderBy: [{ recordedDate: "asc" }, { setNumber: "asc" }],
       }),
       prisma.program.findMany({
-        where: { clientId },
+        where: programsWhereAccessible(clientId),
         orderBy: { createdAt: "desc" },
-        include: {
-          days: {
-            orderBy: { order: "asc" },
-            include: { exercises: { orderBy: { order: "asc" } } },
-          },
-        },
+        include: programInclude,
       }),
       prisma.nutritionTarget.findUnique({ where: { clientId } }),
       prisma.nutritionLog.findMany({
@@ -81,6 +77,8 @@ export default async function ClientDetailPage({
             name: p.name,
             startDate: p.startDate.toISOString(),
             isActive: p.isActive,
+            owner: { id: p.client.id, name: p.client.name },
+            participants: p.participants.map((pp) => ({ id: pp.client.id, name: pp.client.name })),
             days: p.days.map((d) => ({
               id: d.id,
               dayLabel: d.dayLabel,

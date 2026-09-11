@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { requireMember } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+import { programInclude, programsWhereAccessible } from "@/lib/programs";
 import { MemberNavBar } from "@/components/MemberNavBar";
 import { MemberDashboardTabs } from "@/components/member/MemberDashboardTabs";
 
@@ -24,14 +25,9 @@ export default async function MemberDashboardPage() {
         orderBy: [{ recordedDate: "asc" }, { setNumber: "asc" }],
       }),
       prisma.program.findMany({
-        where: { clientId: client.id },
+        where: programsWhereAccessible(client.id),
         orderBy: { createdAt: "desc" },
-        include: {
-          days: {
-            orderBy: { order: "asc" },
-            include: { exercises: { orderBy: { order: "asc" } } },
-          },
-        },
+        include: programInclude,
       }),
       prisma.nutritionTarget.findUnique({ where: { clientId: client.id } }),
       prisma.nutritionLog.findMany({
@@ -77,6 +73,8 @@ export default async function MemberDashboardPage() {
             name: p.name,
             startDate: p.startDate.toISOString(),
             isActive: p.isActive,
+            owner: { id: p.client.id, name: p.client.name },
+            participants: p.participants.map((pp) => ({ id: pp.client.id, name: pp.client.name })),
             days: p.days.map((d) => ({
               id: d.id,
               dayLabel: d.dayLabel,

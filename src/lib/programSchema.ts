@@ -18,4 +18,7 @@ export const programInputSchema = z.object({
   name: z.string().trim().min(1, "Nama program wajib diisi"),
   startDate: z.string().min(1, "Tanggal mulai wajib diisi"),
   days: z.array(programDaySchema).min(1, "Minimal 1 hari"),
+  // Klien lain (di luar pemilik halaman) yang berbagi program yang sama —
+  // private couple (1 tambahan) / private group (sampai 4 tambahan).
+  participantClientIds: z.array(z.string()).max(4, "Maksimal 4 klien tambahan (total 5 orang)").optional(),
 });

@@ -43,7 +43,11 @@ model Client {
 
   bodyMetrics     BodyMetric[]
   loadEntries     LoadEntry[]
+  // Programs this client owns (created from their page) — see also
+  // sharedPrograms below for programs shared with them as a couple/group
+  // session partner.
   programs        Program[]
+  sharedPrograms  ProgramParticipant[]
   nutritionTarget NutritionTarget?
   nutritionLogs   NutritionLog[]
 
@@ -119,6 +123,14 @@ model Movement {
 // dijalankan sesi demi sesi. Satu klien bisa punya beberapa program dari
 // waktu ke waktu; hanya satu yang isActive untuk ditampilkan sebagai program
 // berjalan saat ini.
+//
+// Sesi private couple/group: clientId tetap "pemilik" (yang membuatnya),
+// tapi participants (lihat ProgramParticipant) menambahkan 1-4 klien lain
+// dari trainer yang sama supaya mereka melihat & menjalankan rencana yang
+// SAMA di halaman masing-masing — satu program, satu halaman rencana,
+// dipakai bareng. Realisasi beban tiap orang tetap tercatat terpisah lewat
+// LoadEntry.clientId masing-masing (bukan digabung), jadi progres tiap
+// anggota tetap independen walau rencananya dibagi.
 model Program {
   id        String   @id @default(cuid())
   clientId  String
@@ -129,8 +141,24 @@ model Program {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  days ProgramDay[]
+  days         ProgramDay[]
+  participants ProgramParticipant[]
 
+  @@index([clientId])
+}
+
+// Klien tambahan (di luar Program.clientId si pemilik) yang berbagi program
+// yang sama — dipakai untuk sesi "Private Couple" (1 tambahan) atau
+// "Private Group" (sampai 4 tambahan, total 5 orang termasuk pemilik).
+model ProgramParticipant {
+  id        String   @id @default(cuid())
+  programId String
+  program   Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  createdAt DateTime @default(now())
+
+  @@unique([programId, clientId])
   @@index([clientId])
 }
 

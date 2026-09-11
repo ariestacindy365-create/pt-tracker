@@ -3,6 +3,7 @@ import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/session";
 import { getOwnedClient } from "@/lib/clients";
 import { programInputSchema } from "@/lib/programSchema";
+import { programInclude, programsWhereAccessible } from "@/lib/programs";
 
 export async function GET(
   _req: NextRequest,
@@ -16,14 +17,9 @@ export async function GET(
   if (!client) return NextResponse.json({ error: "Not found" }, { status: 404 });
 
   const programs = await prisma.program.findMany({
-    where: { clientId },
+    where: programsWhereAccessible(clientId),
     orderBy: { createdAt: "desc" },
-    include: {
-      days: {
-        orderBy: { order: "asc" },
-        include: { exercises: { orderBy: { order: "asc" } } },
-      },
-    },
+    include: programInclude,
   });
 
   return NextResponse.json({ programs });
@@ -49,7 +45,21 @@ export async function POST(
     );
   }
 
-  const { name, startDate, days } = parsed.data;
+  const { name, startDate, days, participantClientIds = [] } = parsed.data;
+
+  // Participants must be other, active clients of the same trainer — never
+  // the owner itself, never someone else's client.
+  const uniqueParticipantIds = Array.from(new Set(participantClientIds)).filter(
+    (id) => id !== clientId
+  );
+  if (uniqueParticipantIds.length > 0) {
+    const validParticipants = await prisma.client.count({
+      where: { id: { in: uniqueParticipantIds }, trainerId: session.trainerId },
+    });
+    if (validParticipants !== uniqueParticipantIds.length) {
+      return NextResponse.json({ error: "Klien tambahan tidak valid" }, { status: 400 });
+    }
+  }
 
   // Only one active program at a time — deactivate the rest.
   const program = await prisma.$transaction(async (tx) => {
@@ -81,13 +91,11 @@ export async function POST(
             },
           })),
         },
-      },
-      include: {
-        days: {
-          orderBy: { order: "asc" },
-          include: { exercises: { orderBy: { order: "asc" } } },
+        participants: {
+          create: uniqueParticipantIds.map((id) => ({ clientId: id })),
         },
       },
+      include: programInclude,
     });
   });
 

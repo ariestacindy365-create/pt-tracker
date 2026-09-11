@@ -64,6 +64,16 @@ export function ProgramTab({
               <p className="text-xs text-[var(--muted)]">
                 Mulai {new Date(activeProgram.startDate).toLocaleDateString("id-ID")}
               </p>
+              {(() => {
+                const others = [activeProgram.owner, ...activeProgram.participants].filter(
+                  (p) => p.id !== clientId
+                );
+                return others.length > 0 ? (
+                  <p className="text-xs text-[var(--accent)] mt-0.5">
+                    Sesi bareng: {others.map((p) => p.name).join(", ")}
+                  </p>
+                ) : null;
+              })()}
             </div>
             <div className="flex gap-2">
               <button className="btn-secondary text-sm" onClick={() => setBuildMode("edit")}>

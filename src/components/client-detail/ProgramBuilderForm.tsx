@@ -5,6 +5,10 @@ import { useRouter } from "next/navigation";
 import type { MovementDTO, ProgramDTO } from "@/lib/types";
 import { MovementCombobox } from "./MovementCombobox";
 
+const MAX_PARTICIPANTS = 4; // + the owner client = 5 people max (private group)
+
+type OtherClient = { id: string; name: string };
+
 type ExerciseDraft = {
   exerciseName: string;
   targetSets: string;
@@ -65,16 +69,37 @@ export function ProgramBuilderForm({
   const [name, setName] = useState(initial.name);
   const [startDate, setStartDate] = useState(initial.startDate);
   const [days, setDays] = useState<DayDraft[]>(initial.days);
+  const [participantIds, setParticipantIds] = useState<string[]>(
+    editingProgram?.participants.map((p) => p.id) ?? []
+  );
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [movements, setMovements] = useState<MovementDTO[]>([]);
+  const [otherClients, setOtherClients] = useState<OtherClient[]>([]);
 
   useEffect(() => {
     fetch("/api/movements")
       .then((res) => res.json())
       .then((data) => setMovements(data.movements ?? []))
       .catch(() => {});
-  }, []);
+    fetch("/api/clients")
+      .then((res) => res.json())
+      .then((data) => {
+        const others = (data.clients ?? []).filter(
+          (c: { id: string }) => c.id !== clientId
+        );
+        setOtherClients(others);
+      })
+      .catch(() => {});
+  }, [clientId]);
+
+  function toggleParticipant(id: string) {
+    setParticipantIds((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (prev.length >= MAX_PARTICIPANTS) return prev;
+      return [...prev, id];
+    });
+  }
 
   function updateDay(i: number, patch: Partial<DayDraft>) {
     setDays((prev) => prev.map((d, idx) => (idx === i ? { ...d, ...patch } : d)));
@@ -120,6 +145,7 @@ export function ProgramBuilderForm({
       const payload = {
         name,
         startDate,
+        participantClientIds: participantIds,
         days: days.map((d) => ({
           dayLabel: d.dayLabel,
           date: d.date || null,
@@ -167,6 +193,45 @@ export function ProgramBuilderForm({
           <input id="prog-start" type="date" required className="input" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
         </div>
       </div>
+
+      {otherClients.length > 0 && (
+        <div className="rounded-lg border border-[var(--border)] p-3 flex flex-col gap-2">
+          <p className="label">
+            Klien lain di sesi ini (opsional — private couple/group)
+          </p>
+          <p className="text-xs text-[var(--muted)] -mt-1">
+            Pilih 1 klien lain untuk private couple, atau sampai 4 untuk private group
+            (total 5 orang termasuk klien ini). Semua yang dipilih akan melihat & menjalankan
+            rencana yang sama di halaman masing-masing, tapi beban yang dicatat tetap terpisah
+            per orang.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {otherClients.map((c) => {
+              const checked = participantIds.includes(c.id);
+              const disabled = !checked && participantIds.length >= MAX_PARTICIPANTS;
+              return (
+                <label
+                  key={c.id}
+                  className={`flex items-center gap-1.5 rounded-full border px-3 py-1 text-sm cursor-pointer ${
+                    checked
+                      ? "border-[var(--accent)] bg-[var(--surface-2)] text-[var(--accent)]"
+                      : "border-[var(--border)]"
+                  } ${disabled ? "opacity-40 cursor-not-allowed" : ""}`}
+                >
+                  <input
+                    type="checkbox"
+                    className="sr-only"
+                    checked={checked}
+                    disabled={disabled}
+                    onChange={() => toggleParticipant(c.id)}
+                  />
+                  {c.name}
+                </label>
+              );
+            })}
+          </div>
+        </div>
+      )}
 
       <div className="flex flex-col gap-3">
         {days.map((day, dayIdx) => (

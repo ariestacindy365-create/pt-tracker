@@ -63,7 +63,11 @@ export function MemberDashboardTabs(props: Props) {
       </div>
 
       {tab === "program" && (
-        <MemberProgramView programs={props.programs} loadEntries={props.loadEntries} />
+        <MemberProgramView
+          clientId={props.client.id}
+          programs={props.programs}
+          loadEntries={props.loadEntries}
+        />
       )}
       {tab === "nutrisi" && (
         <NutritionTab

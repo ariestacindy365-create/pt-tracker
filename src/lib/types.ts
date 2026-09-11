@@ -47,12 +47,23 @@ export type ProgramDayDTO = {
   exercises: ProgramExerciseDTO[];
 };
 
+// Minimal client info for showing "who else is in this session" without
+// pulling in a whole ClientDTO.
+export type ProgramPersonDTO = {
+  id: string;
+  name: string;
+};
+
 export type ProgramDTO = {
   id: string;
   name: string;
   startDate: string;
   isActive: boolean;
   days: ProgramDayDTO[];
+  // The client that created/owns this program.
+  owner: ProgramPersonDTO;
+  // Other clients sharing this program (private couple/group sessions).
+  participants: ProgramPersonDTO[];
 };
 
 export type NutritionTargetDTO = {

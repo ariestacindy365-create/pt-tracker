@@ -42,14 +42,20 @@ export async function POST(req: NextRequest) {
   const { exerciseName, recordedDate, setNumber, weight, reps, note, programExerciseId } =
     parsed.data;
 
-  // If a programExerciseId is given, make sure it actually belongs to this
-  // client's own program (not someone else's).
+  // If a programExerciseId is given, make sure it actually belongs to a
+  // program this client can see — either they own it, or it's a shared
+  // private couple/group session they're a participant in.
   if (programExerciseId) {
     const ex = await prisma.programExercise.findUnique({
       where: { id: programExerciseId },
-      include: { day: { include: { program: true } } },
+      include: { day: { include: { program: { include: { participants: true } } } } },
     });
-    if (!ex || ex.day.program.clientId !== session.clientId) {
+    const program = ex?.day.program;
+    const hasAccess =
+      program &&
+      (program.clientId === session.clientId ||
+        program.participants.some((p) => p.clientId === session.clientId));
+    if (!hasAccess) {
       return NextResponse.json({ error: "Gerakan program tidak valid" }, { status: 400 });
     }
   }

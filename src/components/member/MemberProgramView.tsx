@@ -11,9 +11,11 @@ import { OneRMCalculator } from "@/components/client-detail/OneRMCalculator";
 const API_BASE = "/api/member";
 
 export function MemberProgramView({
+  clientId,
   programs,
   loadEntries,
 }: {
+  clientId: string;
   programs: ProgramDTO[];
   loadEntries: LoadEntryDTO[];
 }) {
@@ -37,6 +39,16 @@ export function MemberProgramView({
             <p className="text-xs text-[var(--muted)]">
               Mulai {new Date(activeProgram.startDate).toLocaleDateString("id-ID")}
             </p>
+            {(() => {
+              const others = [activeProgram.owner, ...activeProgram.participants].filter(
+                (p) => p.id !== clientId
+              );
+              return others.length > 0 ? (
+                <p className="text-xs text-[var(--accent)] mt-0.5">
+                  Sesi bareng: {others.map((p) => p.name).join(", ")}
+                </p>
+              ) : null;
+            })()}
           </div>
 
           <button
