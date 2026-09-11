@@ -135,10 +135,13 @@ model Program {
 }
 
 model ProgramDay {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   programId String
-  program   Program  @relation(fields: [programId], references: [id], onDelete: Cascade)
+  program   Program   @relation(fields: [programId], references: [id], onDelete: Cascade)
   dayLabel  String
+  // Tanggal kalender spesifik hari ini dijadwalkan (opsional — nullable
+  // supaya program lama tanpa tanggal tetap valid).
+  date      DateTime?
   order     Int
 
   exercises ProgramExercise[]

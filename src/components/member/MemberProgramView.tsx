@@ -39,7 +39,15 @@ export function MemberProgramView({
           <div className="grid gap-2 sm:grid-cols-2">
             {activeProgram.days.map((day) => (
               <div key={day.id} className="rounded-lg border border-[var(--border)] p-3">
-                <p className="font-medium text-sm mb-1">{day.dayLabel}</p>
+                <p className="font-medium text-sm mb-1">
+                  {day.dayLabel}
+                  {day.date && (
+                    <span className="font-normal text-[var(--muted)]">
+                      {" "}
+                      — {new Date(day.date).toLocaleDateString("id-ID", { weekday: "short", day: "2-digit", month: "short" })}
+                    </span>
+                  )}
+                </p>
                 <ul className="text-sm text-[var(--muted)] flex flex-col gap-0.5">
                   {day.exercises.map((ex) => (
                     <li key={ex.id}>

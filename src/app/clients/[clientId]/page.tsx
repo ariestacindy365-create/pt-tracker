@@ -84,6 +84,7 @@ export default async function ClientDetailPage({
             days: p.days.map((d) => ({
               id: d.id,
               dayLabel: d.dayLabel,
+              date: d.date ? d.date.toISOString() : null,
               order: d.order,
               exercises: d.exercises.map((ex) => ({
                 id: ex.id,

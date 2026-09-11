@@ -42,6 +42,7 @@ export type ProgramExerciseDTO = {
 export type ProgramDayDTO = {
   id: string;
   dayLabel: string;
+  date: string | null;
   order: number;
   exercises: ProgramExerciseDTO[];
 };

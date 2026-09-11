@@ -14,6 +14,7 @@ const exerciseSchema = z.object({
 
 const daySchema = z.object({
   dayLabel: z.string().trim().min(1, "Label hari wajib diisi"),
+  date: z.string().trim().optional().nullable(),
   exercises: z.array(exerciseSchema).min(1, "Minimal 1 gerakan per hari"),
 });
 
@@ -86,6 +87,7 @@ export async function POST(
         days: {
           create: days.map((day, dayIndex) => ({
             dayLabel: day.dayLabel,
+            date: day.date ? new Date(day.date) : null,
             order: dayIndex,
             exercises: {
               create: day.exercises.map((ex, exIndex) => ({

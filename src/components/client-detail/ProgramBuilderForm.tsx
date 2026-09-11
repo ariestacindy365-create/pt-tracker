@@ -15,6 +15,7 @@ type ExerciseDraft = {
 
 type DayDraft = {
   dayLabel: string;
+  date: string;
   exercises: ExerciseDraft[];
 };
 
@@ -23,7 +24,7 @@ function emptyExercise(): ExerciseDraft {
 }
 
 function emptyDay(n: number): DayDraft {
-  return { dayLabel: `Hari ${n}`, exercises: [emptyExercise()] };
+  return { dayLabel: `Hari ${n}`, date: "", exercises: [emptyExercise()] };
 }
 
 function todayStr() {
@@ -98,6 +99,7 @@ export function ProgramBuilderForm({
         startDate,
         days: days.map((d) => ({
           dayLabel: d.dayLabel,
+          date: d.date || null,
           exercises: d.exercises
             .filter((ex) => ex.exerciseName.trim())
             .map((ex) => ({
@@ -148,6 +150,12 @@ export function ProgramBuilderForm({
                 value={day.dayLabel}
                 onChange={(e) => updateDay(dayIdx, { dayLabel: e.target.value })}
                 placeholder="mis. Hari 1 - Push"
+              />
+              <input
+                type="date"
+                className="input max-w-[10rem]"
+                value={day.date}
+                onChange={(e) => updateDay(dayIdx, { date: e.target.value })}
               />
               {days.length > 1 && (
                 <button type="button" onClick={() => removeDay(dayIdx)} className="text-[var(--danger)] text-xs whitespace-nowrap">
