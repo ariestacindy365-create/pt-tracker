@@ -26,6 +26,8 @@ function toDraft(l: LoadEntryDTO): Draft {
   };
 }
 
+const PAGE_SIZE = 10;
+
 export function LoadHistoryTable({
   apiBase,
   loadEntries,
@@ -48,6 +50,9 @@ export function LoadHistoryTable({
   // Riwayat dikelompokkan per gerakan dan tertutup secara default — kalau
   // ditumpuk jadi satu daftar panjang, riwayat berbulan-bulan jadi kepanjangan.
   const [openExercises, setOpenExercises] = useState<Set<string>>(new Set());
+  // Halaman aktif per gerakan (1-indexed) — biar daftar yang dibuka juga
+  // tidak jadi satu scroll panjang saat set-nya banyak.
+  const [pageByExercise, setPageByExercise] = useState<Record<string, number>>({});
 
   async function handleDelete(id: string) {
     setHiddenIds((prev) => new Set(prev).add(id));
@@ -115,6 +120,10 @@ export function LoadHistoryTable({
     });
   }
 
+  function setPage(name: string, page: number) {
+    setPageByExercise((prev) => ({ ...prev, [name]: page }));
+  }
+
   const visible = loadEntries.filter((l) => !hiddenIds.has(l.id)).map((l) => overrides[l.id] ?? l);
 
   const groups = useMemo(() => {
@@ -144,6 +153,9 @@ export function LoadHistoryTable({
     <div className="card divide-y divide-[var(--border)]">
       {groups.map((g) => {
         const isOpen = openExercises.has(g.exerciseName);
+        const totalPages = Math.max(1, Math.ceil(g.entries.length / PAGE_SIZE));
+        const page = Math.min(pageByExercise[g.exerciseName] ?? 1, totalPages);
+        const pageEntries = g.entries.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
         return (
           <div key={g.exerciseName}>
             <button
@@ -170,7 +182,7 @@ export function LoadHistoryTable({
                     </tr>
                   </thead>
                   <tbody>
-                    {g.entries.map((l) =>
+                    {pageEntries.map((l) =>
                       editingId === l.id && draft ? (
                         <tr
                           key={l.id}
@@ -250,6 +262,29 @@ export function LoadHistoryTable({
                     )}
                   </tbody>
                 </table>
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-between p-2 text-xs text-[var(--muted)]">
+                    <button
+                      type="button"
+                      onClick={() => setPage(g.exerciseName, page - 1)}
+                      disabled={page <= 1}
+                      className="btn-secondary px-2 py-1 disabled:opacity-40"
+                    >
+                      ‹ Sebelumnya
+                    </button>
+                    <span>
+                      Halaman {page} / {totalPages}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setPage(g.exerciseName, page + 1)}
+                      disabled={page >= totalPages}
+                      className="btn-secondary px-2 py-1 disabled:opacity-40"
+                    >
+                      Selanjutnya ›
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
