@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { LoadEntryDTO } from "@/lib/types";
 
@@ -45,6 +45,9 @@ export function LoadHistoryTable({
   const [draft, setDraft] = useState<Draft | null>(null);
   const [editError, setEditError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  // Riwayat dikelompokkan per gerakan dan tertutup secara default — kalau
+  // ditumpuk jadi satu daftar panjang, riwayat berbulan-bulan jadi kepanjangan.
+  const [openExercises, setOpenExercises] = useState<Set<string>>(new Set());
 
   async function handleDelete(id: string) {
     setHiddenIds((prev) => new Set(prev).add(id));
@@ -103,119 +106,155 @@ export function LoadHistoryTable({
     }
   }
 
-  const sorted = [...loadEntries]
-    .filter((l) => !hiddenIds.has(l.id))
-    .map((l) => overrides[l.id] ?? l)
-    .sort((a, b) => new Date(b.recordedDate).getTime() - new Date(a.recordedDate).getTime());
+  function toggleExercise(name: string) {
+    setOpenExercises((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name);
+      else next.add(name);
+      return next;
+    });
+  }
+
+  const visible = loadEntries.filter((l) => !hiddenIds.has(l.id)).map((l) => overrides[l.id] ?? l);
+
+  const groups = useMemo(() => {
+    const map = new Map<string, LoadEntryDTO[]>();
+    for (const l of visible) {
+      const arr = map.get(l.exerciseName) ?? [];
+      arr.push(l);
+      map.set(l.exerciseName, arr);
+    }
+    for (const arr of map.values()) {
+      arr.sort((a, b) => new Date(b.recordedDate).getTime() - new Date(a.recordedDate).getTime());
+    }
+    return Array.from(map.entries())
+      .map(([exerciseName, entries]) => ({ exerciseName, entries }))
+      .sort(
+        (a, b) =>
+          new Date(b.entries[0].recordedDate).getTime() -
+          new Date(a.entries[0].recordedDate).getTime()
+      );
+  }, [visible]);
+
+  if (groups.length === 0) {
+    return <div className="card p-4 text-sm text-[var(--muted)]">Belum ada riwayat latihan.</div>;
+  }
 
   return (
-    <div className="card overflow-x-auto">
-      <table className="w-full text-sm">
-        <thead>
-          <tr className="text-left text-[var(--muted)] border-b border-[var(--border)]">
-            <th className="p-3">Tanggal</th>
-            <th className="p-3">Gerakan</th>
-            <th className="p-3">Set</th>
-            <th className="p-3">Beban x Reps</th>
-            <th className="p-3">Est. 1RM</th>
-            <th className="p-3"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {sorted.length === 0 && (
-            <tr>
-              <td colSpan={6} className="p-3 text-[var(--muted)]">
-                Belum ada riwayat latihan.
-              </td>
-            </tr>
-          )}
-          {sorted.map((l) =>
-            editingId === l.id && draft ? (
-              <tr key={l.id} className="border-b border-[var(--border)] last:border-0 bg-[var(--surface-2)]">
-                <td className="p-2">
-                  <input
-                    type="date"
-                    className="input text-xs"
-                    value={draft.recordedDate}
-                    onChange={(e) => setDraft({ ...draft, recordedDate: e.target.value })}
-                  />
-                </td>
-                <td className="p-2">
-                  <input
-                    className="input text-xs"
-                    value={draft.exerciseName}
-                    onChange={(e) => setDraft({ ...draft, exerciseName: e.target.value })}
-                  />
-                </td>
-                <td className="p-2">
-                  <input
-                    type="number"
-                    className="input text-xs w-14"
-                    value={draft.setNumber}
-                    onChange={(e) => setDraft({ ...draft, setNumber: e.target.value })}
-                  />
-                </td>
-                <td className="p-2">
-                  <div className="flex gap-1">
-                    <input
-                      type="number"
-                      step="0.5"
-                      placeholder="kg"
-                      className="input text-xs w-16"
-                      value={draft.weight}
-                      onChange={(e) => setDraft({ ...draft, weight: e.target.value })}
-                    />
-                    <input
-                      type="number"
-                      placeholder="reps"
-                      className="input text-xs w-16"
-                      value={draft.reps}
-                      onChange={(e) => setDraft({ ...draft, reps: e.target.value })}
-                    />
-                  </div>
-                </td>
-                <td className="p-2 text-[var(--muted)] text-xs">otomatis</td>
-                <td className="p-2 text-right whitespace-nowrap">
-                  <button
-                    onClick={() => saveEdit(l.id)}
-                    disabled={saving}
-                    className="text-[var(--accent)] text-xs hover:underline mr-2"
-                  >
-                    {saving ? "..." : "Simpan"}
-                  </button>
-                  <button onClick={cancelEdit} className="text-[var(--muted)] text-xs hover:underline">
-                    Batal
-                  </button>
-                  {editError && (
-                    <p className="text-[var(--danger)] text-xs mt-1">{editError}</p>
-                  )}
-                </td>
-              </tr>
-            ) : (
-              <tr key={l.id} className="border-b border-[var(--border)] last:border-0">
-                <td className="p-3">{fmtDate(l.recordedDate)}</td>
-                <td className="p-3">{l.exerciseName}</td>
-                <td className="p-3">{l.setNumber}</td>
-                <td className="p-3">
-                  {l.weight > 0 ? `${l.weight}kg x ${l.reps}` : `${l.reps} detik/reps`}
-                </td>
-                <td className="p-3 font-medium">{l.weight > 0 ? `${l.estimated1RM}kg` : "-"}</td>
-                <td className="p-3 text-right whitespace-nowrap">
-                  <button
-                    onClick={() => startEdit(l)}
-                    className="text-[var(--accent)] text-xs hover:underline mr-3"
-                  >
-                    Edit
-                  </button>
-                  <button onClick={() => handleDelete(l.id)} className="text-[var(--danger)] text-xs hover:underline">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
-            )
-          )}
-        </tbody>
-      </table>
+    <div className="card divide-y divide-[var(--border)]">
+      {groups.map((g) => {
+        const isOpen = openExercises.has(g.exerciseName);
+        return (
+          <div key={g.exerciseName}>
+            <button
+              type="button"
+              onClick={() => toggleExercise(g.exerciseName)}
+              className="w-full flex items-center justify-between p-3 text-sm text-left"
+            >
+              <span className="font-medium">{g.exerciseName}</span>
+              <span className="text-[var(--muted)] text-xs whitespace-nowrap">
+                {g.entries.length} set · terakhir {fmtDate(g.entries[0].recordedDate)}{" "}
+                {isOpen ? "▲" : "▾"}
+              </span>
+            </button>
+            {isOpen && (
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm">
+                  <thead>
+                    <tr className="text-left text-[var(--muted)] border-b border-[var(--border)]">
+                      <th className="p-3">Tanggal</th>
+                      <th className="p-3">Set</th>
+                      <th className="p-3">Beban x Reps</th>
+                      <th className="p-3">Est. 1RM</th>
+                      <th className="p-3"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {g.entries.map((l) =>
+                      editingId === l.id && draft ? (
+                        <tr
+                          key={l.id}
+                          className="border-b border-[var(--border)] last:border-0 bg-[var(--surface-2)]"
+                        >
+                          <td className="p-2">
+                            <input
+                              type="date"
+                              className="input text-xs"
+                              value={draft.recordedDate}
+                              onChange={(e) => setDraft({ ...draft, recordedDate: e.target.value })}
+                            />
+                          </td>
+                          <td className="p-2">
+                            <input
+                              type="number"
+                              className="input text-xs w-14"
+                              value={draft.setNumber}
+                              onChange={(e) => setDraft({ ...draft, setNumber: e.target.value })}
+                            />
+                          </td>
+                          <td className="p-2">
+                            <div className="flex gap-1">
+                              <input
+                                type="number"
+                                step="0.5"
+                                placeholder="kg"
+                                className="input text-xs w-16"
+                                value={draft.weight}
+                                onChange={(e) => setDraft({ ...draft, weight: e.target.value })}
+                              />
+                              <input
+                                type="number"
+                                placeholder="reps"
+                                className="input text-xs w-16"
+                                value={draft.reps}
+                                onChange={(e) => setDraft({ ...draft, reps: e.target.value })}
+                              />
+                            </div>
+                          </td>
+                          <td className="p-2 text-[var(--muted)] text-xs">otomatis</td>
+                          <td className="p-2 text-right whitespace-nowrap">
+                            <button
+                              onClick={() => saveEdit(l.id)}
+                              disabled={saving}
+                              className="text-[var(--accent)] text-xs hover:underline mr-2"
+                            >
+                              {saving ? "..." : "Simpan"}
+                            </button>
+                            <button onClick={cancelEdit} className="text-[var(--muted)] text-xs hover:underline">
+                              Batal
+                            </button>
+                            {editError && <p className="text-[var(--danger)] text-xs mt-1">{editError}</p>}
+                          </td>
+                        </tr>
+                      ) : (
+                        <tr key={l.id} className="border-b border-[var(--border)] last:border-0">
+                          <td className="p-3">{fmtDate(l.recordedDate)}</td>
+                          <td className="p-3">{l.setNumber}</td>
+                          <td className="p-3">
+                            {l.weight > 0 ? `${l.weight}kg x ${l.reps}` : `${l.reps} detik/reps`}
+                          </td>
+                          <td className="p-3 font-medium">{l.weight > 0 ? `${l.estimated1RM}kg` : "-"}</td>
+                          <td className="p-3 text-right whitespace-nowrap">
+                            <button
+                              onClick={() => startEdit(l)}
+                              className="text-[var(--accent)] text-xs hover:underline mr-3"
+                            >
+                              Edit
+                            </button>
+                            <button onClick={() => handleDelete(l.id)} className="text-[var(--danger)] text-xs hover:underline">
+                              Hapus
+                            </button>
+                          </td>
+                        </tr>
+                      )
+                    )}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
