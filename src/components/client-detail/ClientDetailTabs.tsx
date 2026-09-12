@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { differenceInCalendarWeeks, format } from "date-fns";
+import { id as idLocale } from "date-fns/locale";
 import type {
   ClientDTO,
   BodyMetricDTO,
@@ -36,6 +38,17 @@ type TabKey = (typeof TABS)[number]["key"];
 export function ClientDetailTabs(props: Props) {
   const [tab, setTab] = useState<TabKey>("profil");
 
+  // Progres klien dihitung dari kapan dia pertama kali mulai latihan
+  // (program tertua), bukan dari program yang sedang aktif saja — program
+  // aktif berganti-ganti tapi lama latihan klien berjalan terus.
+  const trainingStart =
+    props.programs.length > 0
+      ? props.programs.reduce((earliest, p) => (p.startDate < earliest ? p.startDate : earliest), props.programs[0].startDate)
+      : null;
+  const trainingWeeks = trainingStart
+    ? Math.max(0, differenceInCalendarWeeks(new Date(), new Date(trainingStart)))
+    : null;
+
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
@@ -44,6 +57,12 @@ export function ClientDetailTabs(props: Props) {
             &larr; Klien
           </Link>
           <h1 className="text-xl font-semibold">{props.client.name}</h1>
+          {trainingStart && (
+            <p className="text-xs text-[var(--muted)]">
+              Latihan sejak {format(new Date(trainingStart), "d MMMM yyyy", { locale: idLocale })}
+              {trainingWeeks !== null && ` · ${trainingWeeks} minggu`}
+            </p>
+          )}
         </div>
       </div>
 
