@@ -21,6 +21,60 @@ function fmtDate(iso: string) {
   return new Date(iso).toLocaleDateString("id-ID", { day: "2-digit", month: "short" });
 }
 
+type MetricPoint = { date: string; value: number };
+
+// One small trend chart per body metric (berat, body fat, SMM, visceral
+// fat) — each has its own scale, so they're plotted separately rather
+// than crammed onto one shared axis.
+function MetricChart({
+  title,
+  unit,
+  points,
+}: {
+  title: string;
+  unit: string;
+  points: MetricPoint[];
+}) {
+  if (points.length < 2) return null;
+
+  const first = points[0];
+  const last = points[points.length - 1];
+  const delta = Math.round((last.value - first.value) * 100) / 100;
+  const trend = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
+
+  return (
+    <div className="card p-4">
+      <div className="flex items-center justify-between mb-2">
+        <p className="label mb-0">{title}</p>
+        <span
+          className={`text-xs font-medium ${
+            trend === "up"
+              ? "text-[var(--success)]"
+              : trend === "down"
+              ? "text-[var(--danger)]"
+              : "text-[var(--muted)]"
+          }`}
+        >
+          {trend === "up" && `↑ ${delta}${unit}`}
+          {trend === "down" && `↓ ${Math.abs(delta)}${unit}`}
+          {trend === "flat" && "Stabil"}
+        </span>
+      </div>
+      <div className="h-40">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart data={points}>
+            <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
+            <XAxis dataKey="date" fontSize={11} />
+            <YAxis fontSize={11} domain={["auto", "auto"]} />
+            <Tooltip />
+            <Line type="monotone" dataKey="value" stroke="var(--accent)" strokeWidth={2} dot={false} />
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
+    </div>
+  );
+}
+
 export function ProgressTab({
   apiBase,
   bodyMetrics,
@@ -93,13 +147,26 @@ export function ProgressTab({
 
   const visibleMetrics = bodyMetrics.filter((m) => !hiddenIds.has(m.id));
 
-  const chartData = visibleMetrics.map((m) => ({
-    date: fmtDate(m.recordedDate),
-    weight: m.weight,
-    bodyFatPercent: m.bodyFatPercent,
-    skeletalMuscleMass: m.skeletalMuscleMass,
-    visceralFat: m.visceralFat,
-  }));
+  const sortedAsc = [...visibleMetrics].sort(
+    (a, b) => new Date(a.recordedDate).getTime() - new Date(b.recordedDate).getTime()
+  );
+
+  function pointsFor(field: keyof BodyMetricDTO): MetricPoint[] {
+    return sortedAsc
+      .filter((m) => m[field] != null)
+      .map((m) => ({ date: fmtDate(m.recordedDate), value: m[field] as number }));
+  }
+
+  const weightPoints = pointsFor("weight");
+  const bodyFatPoints = pointsFor("bodyFatPercent");
+  const smmPoints = pointsFor("skeletalMuscleMass");
+  const visceralFatPoints = pointsFor("visceralFat");
+
+  const anyChart =
+    weightPoints.length > 1 ||
+    bodyFatPoints.length > 1 ||
+    smmPoints.length > 1 ||
+    visceralFatPoints.length > 1;
 
   const sorted = [...visibleMetrics].sort(
     (a, b) => new Date(b.recordedDate).getTime() - new Date(a.recordedDate).getTime()
@@ -193,20 +260,12 @@ export function ProgressTab({
         </div>
       </form>
 
-      {chartData.length > 1 && (
-        <div className="card p-4">
-          <p className="label mb-2">Tren berat badan (kg)</p>
-          <div className="h-56">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                <XAxis dataKey="date" fontSize={12} />
-                <YAxis fontSize={12} domain={["auto", "auto"]} />
-                <Tooltip />
-                <Line type="monotone" dataKey="weight" stroke="var(--accent)" strokeWidth={2} dot={false} />
-              </LineChart>
-            </ResponsiveContainer>
-          </div>
+      {anyChart && (
+        <div className="grid gap-4 sm:grid-cols-2">
+          <MetricChart title="Berat badan (kg)" unit="kg" points={weightPoints} />
+          <MetricChart title="Body fat (%)" unit="%" points={bodyFatPoints} />
+          <MetricChart title="Skeletal muscle mass (kg)" unit="kg" points={smmPoints} />
+          <MetricChart title="Visceral fat" unit="" points={visceralFatPoints} />
         </div>
       )}
 
