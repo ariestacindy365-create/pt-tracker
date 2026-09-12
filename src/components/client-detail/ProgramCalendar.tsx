@@ -19,13 +19,17 @@ import type { ProgramDTO, LoadEntryDTO } from "@/lib/types";
 // Programs are contiguous by startDate (a new program deactivates the
 // previous one) — so "which program applied on date X" is just the last
 // program whose startDate is on or before X, regardless of isActive.
-function findProgramForDate(programs: ProgramDTO[], date: Date): ProgramDTO | null {
-  const sorted = [...programs].sort(
-    (a, b) => new Date(a.startDate).getTime() - new Date(b.startDate).getTime()
+// Compared as plain "yyyy-MM-dd" string keys (not Date objects) — startDate
+// comes back as a UTC-parsed ISO string, so comparing Date timestamps against
+// a local-timezone calendar date would shift the boundary by hours and
+// incorrectly exclude a program on its own start date.
+function findProgramForDate(programs: ProgramDTO[], dateKey: string): ProgramDTO | null {
+  const sorted = [...programs].sort((a, b) =>
+    a.startDate.slice(0, 10).localeCompare(b.startDate.slice(0, 10))
   );
   let applicable: ProgramDTO | null = null;
   for (const p of sorted) {
-    if (new Date(p.startDate) <= date) applicable = p;
+    if (p.startDate.slice(0, 10) <= dateKey) applicable = p;
     else break;
   }
   return applicable;
@@ -66,8 +70,12 @@ export function ProgramCalendar({
   }, [loadEntries]);
 
   const selectedKey = selectedDate ? format(selectedDate, "yyyy-MM-dd") : null;
-  const selectedProgram = selectedDate ? findProgramForDate(programs, selectedDate) : null;
-  const selectedEntries = selectedKey ? entriesByDate.get(selectedKey) ?? [] : [];
+  const selectedProgram = selectedKey ? findProgramForDate(programs, selectedKey) : null;
+  // The plan for that exact date, if one of the program's days was
+  // scheduled there — shows what's supposed to happen, not what was
+  // actually logged (that's what Riwayat latihan is for).
+  const selectedDay =
+    selectedProgram?.days.find((d) => d.date && d.date.slice(0, 10) === selectedKey) ?? null;
 
   if (programs.length === 0) {
     return null;
@@ -124,7 +132,7 @@ export function ProgramCalendar({
               const key = format(day, "yyyy-MM-dd");
               const hasEntries = entriesByDate.has(key);
               const inMonth = isSameMonth(day, month);
-              const program = findProgramForDate(programs, day);
+              const program = findProgramForDate(programs, key);
               const isSelected = selectedDate && isSameDay(day, selectedDate);
               return (
                 <button
@@ -162,16 +170,19 @@ export function ProgramCalendar({
               <p className="text-[var(--muted)] mb-2">
                 Program berlaku: {selectedProgram ? selectedProgram.name : "Belum ada program"}
               </p>
-              {selectedEntries.length > 0 ? (
-                <ul className="flex flex-col gap-0.5">
-                  {selectedEntries.map((e) => (
-                    <li key={e.id}>
-                      {e.exerciseName}: {e.weight}kg x {e.reps} (set {e.setNumber}) — est. 1RM {e.estimated1RM}kg
-                    </li>
-                  ))}
-                </ul>
+              {selectedDay ? (
+                <>
+                  <p className="font-medium text-sm mb-1">{selectedDay.dayLabel}</p>
+                  <ul className="flex flex-col gap-0.5">
+                    {selectedDay.exercises.map((ex) => (
+                      <li key={ex.id}>
+                        {ex.exerciseName} — {ex.targetSets ?? "?"}x{ex.targetReps ?? "?"}
+                      </li>
+                    ))}
+                  </ul>
+                </>
               ) : (
-                <p className="text-[var(--muted)]">Tidak ada latihan tercatat di tanggal ini.</p>
+                <p className="text-[var(--muted)]">Tidak ada rencana latihan terjadwal di tanggal ini.</p>
               )}
             </div>
           )}
