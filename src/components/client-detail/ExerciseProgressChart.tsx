@@ -24,21 +24,23 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
   const [selected, setSelected] = useState<string | null>(null);
   const activeExercise = selected && exerciseNames.includes(selected) ? selected : exerciseNames[0] ?? "";
 
-  // Best (highest) actual weight lifted per date for the selected exercise
-  // — one point per day even if several sets were logged that day. Plots
-  // the real beban, not the calculated/estimated 1RM.
+  // Every set is its own point, in chronological order (by date, then set
+  // number within a date) — plots the real beban actually lifted, not the
+  // calculated/estimated 1RM, and doesn't collapse multiple sets from the
+  // same day into one point.
   const chartData = useMemo(() => {
     if (!activeExercise) return [];
-    const byDate = new Map<string, number>();
-    for (const l of loadEntries) {
-      if (l.exerciseName !== activeExercise) continue;
-      const key = l.recordedDate.slice(0, 10);
-      const current = byDate.get(key) ?? 0;
-      if (l.weight > current) byDate.set(key, l.weight);
-    }
-    return Array.from(byDate.entries())
-      .sort((a, b) => a[0].localeCompare(b[0]))
-      .map(([iso, weight]) => ({ iso, date: fmtDate(iso), weight }));
+    return loadEntries
+      .filter((l) => l.exerciseName === activeExercise)
+      .sort((a, b) => {
+        const byDate = a.recordedDate.localeCompare(b.recordedDate);
+        return byDate !== 0 ? byDate : a.setNumber - b.setNumber;
+      })
+      .map((l) => ({
+        key: l.id,
+        label: `${fmtDate(l.recordedDate)} · S${l.setNumber}`,
+        weight: l.weight,
+      }));
   }, [loadEntries, activeExercise]);
 
   if (exerciseNames.length === 0) {
@@ -60,7 +62,7 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <label className="label" htmlFor="ex-select">
-            Grafik progres per gerakan (beban aktual)
+            Grafik progres per gerakan (beban aktual per set)
           </label>
           <select
             id="ex-select"
@@ -88,7 +90,7 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
             {trend === "up" && `↑ Naik ${delta}kg`}
             {trend === "down" && `↓ Turun ${Math.abs(delta)}kg`}
             {trend === "flat" && "Stabil"}
-            <div className="text-xs text-[var(--muted)] font-normal">sejak {first.date}</div>
+            <div className="text-xs text-[var(--muted)] font-normal">sejak {first.label}</div>
           </div>
         )}
       </div>
@@ -98,7 +100,7 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartData}>
               <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-              <XAxis dataKey="date" fontSize={12} />
+              <XAxis dataKey="label" fontSize={11} interval="preserveStartEnd" />
               <YAxis fontSize={12} domain={["auto", "auto"]} />
               <Tooltip />
               <Line
@@ -113,9 +115,8 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
         </div>
       ) : first ? (
         <p className="text-sm text-[var(--muted)]">
-          Baru tercatat di 1 tanggal ({first.date}, {first.weight}kg). Grafik tren baru muncul
-          kalau gerakan ini sudah dicatat di minimal 2 tanggal yang berbeda — beban di
-          tanggal yang sama nggak dihitung sebagai titik terpisah.
+          Baru ada 1 set tercatat ({first.label}, {first.weight}kg). Catat satu set lagi
+          untuk gerakan ini biar grafiknya muncul.
         </p>
       ) : (
         <p className="text-sm text-[var(--muted)]">
