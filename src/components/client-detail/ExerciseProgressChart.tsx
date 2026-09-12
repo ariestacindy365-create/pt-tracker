@@ -111,9 +111,15 @@ export function ExerciseProgressChart({ loadEntries }: { loadEntries: LoadEntryD
             </LineChart>
           </ResponsiveContainer>
         </div>
+      ) : first ? (
+        <p className="text-sm text-[var(--muted)]">
+          Baru tercatat di 1 tanggal ({first.date}, {first.weight}kg). Grafik tren baru muncul
+          kalau gerakan ini sudah dicatat di minimal 2 tanggal yang berbeda — beban di
+          tanggal yang sama nggak dihitung sebagai titik terpisah.
+        </p>
       ) : (
         <p className="text-sm text-[var(--muted)]">
-          Butuh minimal 2 sesi tercatat untuk gerakan ini agar grafik muncul.
+          Belum ada riwayat untuk gerakan ini.
         </p>
       )}
     </div>
