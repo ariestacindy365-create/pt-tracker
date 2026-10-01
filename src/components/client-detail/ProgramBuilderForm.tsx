@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { MovementDTO, ProgramDTO } from "@/lib/types";
 import { MovementCombobox } from "./MovementCombobox";
@@ -34,6 +34,10 @@ function emptyDay(n: number): DayDraft {
 function todayStr() {
   return new Date().toISOString().slice(0, 10);
 }
+
+const DRAFT_PREFIX = "pt-tracker:program-draft:";
+
+type Draft = { name: string; startDate: string; days: DayDraft[]; participantIds: string[] };
 
 function toDraft(program: ProgramDTO): { name: string; startDate: string; days: DayDraft[] } {
   return {
@@ -76,6 +80,58 @@ export function ProgramBuilderForm({
   const [loading, setLoading] = useState(false);
   const [movements, setMovements] = useState<MovementDTO[]>([]);
   const [otherClients, setOtherClients] = useState<OtherClient[]>([]);
+
+  // Keyed per program being edited (or "new" for a fresh one), so an
+  // abandoned edit draft never leaks into a different program.
+  const draftKey = `${DRAFT_PREFIX}${clientId}:${editingProgram?.id ?? "new"}`;
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(draftKey);
+      if (!raw) return;
+      const draft = JSON.parse(raw) as Draft;
+      // One-time restore right after mount, not a resync with an external
+      // store on every change.
+      /* eslint-disable react-hooks/set-state-in-effect */
+      if (draft.name) setName(draft.name);
+      if (draft.startDate) setStartDate(draft.startDate);
+      if (draft.days?.length) setDays(draft.days);
+      if (draft.participantIds) setParticipantIds(draft.participantIds);
+      /* eslint-enable react-hooks/set-state-in-effect */
+    } catch {
+      // corrupt or inaccessible storage — just skip the restore
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // The mount-time restore effect above calls setState, which only takes
+  // effect on the NEXT render — this effect would otherwise also run on the
+  // very first render (with pre-restore state) and clobber the draft it
+  // just read. Skip that first run; once state actually changes (restored
+  // or user-edited), this re-runs and writes for real.
+  const skippedFirstAutosave = useRef(false);
+
+  // Autosave as the trainer fills in the program, so an accidental refresh
+  // or tab close doesn't wipe a half-built program.
+  useEffect(() => {
+    if (!skippedFirstAutosave.current) {
+      skippedFirstAutosave.current = true;
+      return;
+    }
+    try {
+      localStorage.setItem(draftKey, JSON.stringify({ name, startDate, days, participantIds }));
+    } catch {
+      // storage unavailable/full — autosave just doesn't happen this time
+    }
+  }, [draftKey, name, startDate, days, participantIds]);
+
+  function clearDraft() {
+    try {
+      localStorage.removeItem(draftKey);
+    } catch {
+      // ignore
+    }
+  }
 
   useEffect(() => {
     fetch("/api/movements")
@@ -173,11 +229,17 @@ export function ProgramBuilderForm({
         setError(data.error ?? "Gagal menyimpan program");
         return;
       }
+      clearDraft();
       router.refresh();
       onDone();
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleCancel() {
+    clearDraft();
+    onDone();
   }
 
   return (
@@ -342,7 +404,7 @@ export function ProgramBuilderForm({
         <button type="submit" className="btn-primary" disabled={loading}>
           {loading ? "Menyimpan..." : editingProgram ? "Simpan perubahan" : "Simpan program"}
         </button>
-        <button type="button" className="btn-secondary" onClick={onDone}>
+        <button type="button" className="btn-secondary" onClick={handleCancel}>
           Batal
         </button>
       </div>

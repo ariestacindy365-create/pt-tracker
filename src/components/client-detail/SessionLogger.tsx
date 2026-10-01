@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ProgramDayDTO, ProgramExerciseDTO } from "@/lib/types";
 import { isTimerBased } from "@/lib/loads";
@@ -9,6 +9,7 @@ type SetRow = { weight: string; reps: string };
 type Person = { id: string; name: string; apiBase: string };
 
 const SELF = "__self__";
+const DRAFT_PREFIX = "pt-tracker:session-draft:";
 
 function todayStr() {
   return new Date().toISOString().slice(0, 10);
@@ -43,6 +44,60 @@ export function SessionLogger({
   const [actuals, setActuals] = useState<Record<string, Record<string, SetRow[]>>>({});
   const [error, setError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+
+  // Scoped to this client's session logger — restored after mount (not in
+  // useState's initializer) so SSR and the first client render still match.
+  const draftKey = `${DRAFT_PREFIX}${apiBase}`;
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(draftKey);
+      if (!raw) return;
+      const draft = JSON.parse(raw) as {
+        dayId?: string;
+        recordedDate?: string;
+        actuals?: Record<string, Record<string, SetRow[]>>;
+      };
+      // One-time restore from localStorage right after mount, not a
+      // resync with an external store on every change — the lint rule's
+      // cascading-render concern doesn't apply to a single mount effect.
+      /* eslint-disable react-hooks/set-state-in-effect */
+      if (draft.dayId && days.some((d) => d.id === draft.dayId)) setDayId(draft.dayId);
+      if (draft.recordedDate) setRecordedDate(draft.recordedDate);
+      if (draft.actuals) setActuals(draft.actuals);
+      /* eslint-enable react-hooks/set-state-in-effect */
+    } catch {
+      // corrupt or inaccessible storage — just skip the restore
+    }
+    // Only restore once, right after mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // The mount-time restore effect above calls setState, which only takes
+  // effect on the NEXT render — this effect would otherwise also run on the
+  // very first render (with pre-restore state) and clobber the draft it
+  // just read. Skip that first run; once state actually changes (restored
+  // or user-edited), this re-runs and writes for real.
+  const skippedFirstAutosave = useRef(false);
+
+  // Autosave as the trainer fills in sets, so an accidental refresh or tab
+  // close doesn't wipe a half-logged session. Cleared once nothing is filled
+  // in (including right after a successful save).
+  useEffect(() => {
+    if (!skippedFirstAutosave.current) {
+      skippedFirstAutosave.current = true;
+      return;
+    }
+    try {
+      if (Object.keys(actuals).length > 0) {
+        localStorage.setItem(draftKey, JSON.stringify({ dayId, recordedDate, actuals }));
+      } else {
+        localStorage.removeItem(draftKey);
+      }
+    } catch {
+      // storage unavailable/full — autosave just doesn't happen this time
+    }
+  }, [draftKey, dayId, recordedDate, actuals]);
 
   const selectedDay = days.find((d) => d.id === dayId);
 
