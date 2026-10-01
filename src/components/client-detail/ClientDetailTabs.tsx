@@ -12,7 +12,7 @@ import type {
   NutritionTargetDTO,
   NutritionLogDTO,
 } from "@/lib/types";
-import { initials } from "@/lib/format";
+import { initials, avatarColor } from "@/lib/format";
 import { ProfileTab } from "./ProfileTab";
 import { ProgramTab } from "./ProgramTab";
 import { NutritionTab } from "./NutritionTab";
@@ -53,7 +53,12 @@ export function ClientDetailTabs(props: Props) {
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center gap-3">
-        <div className="avatar w-11 h-11 text-base shrink-0">{initials(props.client.name)}</div>
+        <div
+          className="avatar w-11 h-11 text-base shrink-0"
+          style={{ background: avatarColor(props.client.name).bg, color: avatarColor(props.client.name).fg }}
+        >
+          {initials(props.client.name)}
+        </div>
         <div className="min-w-0">
           <Link href="/dashboard" className="text-sm text-[var(--accent)]">
             &larr; Klien

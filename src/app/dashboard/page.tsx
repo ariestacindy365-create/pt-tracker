@@ -5,7 +5,7 @@ import { requireTrainer } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { NavBar } from "@/components/NavBar";
 import { AddClientForm } from "@/components/AddClientForm";
-import { initials } from "@/lib/format";
+import { initials, avatarColor } from "@/lib/format";
 
 // A client with no body metric or load entry logged in this many days gets
 // flagged — long enough that a normal gap between sessions doesn't trip it,
@@ -63,6 +63,7 @@ export default async function DashboardPage() {
 
               const weightDelta =
                 latest && previous ? Math.round((latest.weight - previous.weight) * 100) / 100 : null;
+              const avatar = avatarColor(client.name);
 
               return (
                 <Link
@@ -73,7 +74,12 @@ export default async function DashboardPage() {
                   }`}
                 >
                   <div className="flex items-start gap-3">
-                    <div className="avatar w-10 h-10 text-sm">{initials(client.name)}</div>
+                    <div
+                      className="avatar w-10 h-10 text-sm"
+                      style={{ background: avatar.bg, color: avatar.fg }}
+                    >
+                      {initials(client.name)}
+                    </div>
                     <div className="min-w-0 flex-1">
                       <div className="flex items-start justify-between gap-2">
                         <p className="font-medium truncate">{client.name}</p>

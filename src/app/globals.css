@@ -1,16 +1,19 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f3f5f9;
+  /* Warm, slightly off-white neutrals instead of cool slate — pairs with
+     the teal accent for a cleaner, less generic-SaaS feel. */
+  --background: #f7f6f3;
   --surface: #ffffff;
-  --surface-2: #eef1f7;
-  --border: #dde3ed;
-  --foreground: #101828;
-  --muted: #667085;
-  --accent: #4f46e5;
-  --accent-2: #3730a3;
+  --surface-2: #f0efe8;
+  --border: #e3e1d7;
+  --foreground: #1c1917;
+  --muted: #78716c;
+  --accent: #0d9488;
+  --accent-2: #0f766e;
   --danger: #dc2626;
   --success: #16a34a;
+  --warning: #d97706;
 }
 
 @theme inline {
@@ -24,6 +27,7 @@
   --color-accent-2: var(--accent-2);
   --color-danger: var(--danger);
   --color-success: var(--success);
+  --color-warning: var(--warning);
 }
 
 body {
@@ -122,6 +126,10 @@ body {
 .badge-muted {
   background: var(--surface-2);
   color: var(--muted);
+}
+.badge-warning {
+  background: color-mix(in srgb, var(--warning) 14%, transparent);
+  color: var(--warning);
 }
 
 .avatar {
