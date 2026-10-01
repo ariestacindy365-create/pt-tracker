@@ -93,14 +93,17 @@ export function ProgramTab({
                 ) : null;
               })()}
             </div>
-            <div className="flex gap-2">
-              <button className="btn-secondary text-sm" onClick={() => setBuildMode("edit")}>
+            <div className="flex flex-wrap gap-2">
+              <button className="btn-secondary text-sm whitespace-nowrap" onClick={() => setBuildMode("edit")}>
                 Edit program
               </button>
-              <button className="btn-secondary text-sm" onClick={() => startDuplicate(activeProgram)}>
+              <button
+                className="btn-secondary text-sm whitespace-nowrap"
+                onClick={() => startDuplicate(activeProgram)}
+              >
                 Duplikat
               </button>
-              <button className="btn-secondary text-sm" onClick={() => setBuildMode("new")}>
+              <button className="btn-secondary text-sm whitespace-nowrap" onClick={() => setBuildMode("new")}>
                 + Program baru
               </button>
             </div>

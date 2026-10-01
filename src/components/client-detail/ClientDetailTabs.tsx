@@ -12,6 +12,7 @@ import type {
   NutritionTargetDTO,
   NutritionLogDTO,
 } from "@/lib/types";
+import { initials } from "@/lib/format";
 import { ProfileTab } from "./ProfileTab";
 import { ProgramTab } from "./ProgramTab";
 import { NutritionTab } from "./NutritionTab";
@@ -51,12 +52,13 @@ export function ClientDetailTabs(props: Props) {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
-        <div>
+      <div className="flex items-center gap-3">
+        <div className="avatar w-11 h-11 text-base shrink-0">{initials(props.client.name)}</div>
+        <div className="min-w-0">
           <Link href="/dashboard" className="text-sm text-[var(--accent)]">
             &larr; Klien
           </Link>
-          <h1 className="text-xl font-semibold">{props.client.name}</h1>
+          <h1 className="text-xl font-semibold truncate">{props.client.name}</h1>
           {trainingStart && (
             <p className="text-xs text-[var(--muted)]">
               Latihan sejak {format(new Date(trainingStart), "d MMMM yyyy", { locale: idLocale })}
@@ -66,12 +68,12 @@ export function ClientDetailTabs(props: Props) {
         </div>
       </div>
 
-      <div className="flex gap-1 border-b border-[var(--border)] overflow-x-auto">
+      <div className="flex gap-1 border-b border-[var(--border)] overflow-x-auto [mask-image:linear-gradient(to_right,black_94%,transparent)]">
         {TABS.map((t) => (
           <button
             key={t.key}
             onClick={() => setTab(t.key)}
-            className={`px-3 py-2 text-sm font-medium whitespace-nowrap border-b-2 -mb-px ${
+            className={`px-3.5 py-2.5 text-sm font-medium whitespace-nowrap border-b-2 -mb-px transition-colors ${
               tab === t.key
                 ? "border-[var(--accent)] text-[var(--accent)]"
                 : "border-transparent text-[var(--muted)] hover:text-[var(--foreground)]"
