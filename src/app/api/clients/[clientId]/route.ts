@@ -16,6 +16,10 @@ const updateSchema = z.object({
     .regex(/^\d{4,6}$/, "PIN harus 4-6 digit angka")
     .optional()
     .or(z.literal("")),
+  goalWeight: z.number().nonnegative("Target berat tidak boleh minus").nullable().optional(),
+  goalBodyFatPercent: z.number().nonnegative("Target body fat tidak boleh minus").nullable().optional(),
+  goalDate: z.string().nullable().optional(),
+  goalNote: z.string().trim().nullable().optional(),
 });
 
 export async function GET(
@@ -52,7 +56,7 @@ export async function PATCH(
     );
   }
 
-  const { pin, email, ...rest } = parsed.data;
+  const { pin, email, goalDate, ...rest } = parsed.data;
 
   if (email) {
     const other = await prisma.client.findUnique({ where: { email } });
@@ -66,6 +70,7 @@ export async function PATCH(
     data: {
       ...rest,
       ...(email !== undefined ? { email: email || null } : {}),
+      ...(goalDate !== undefined ? { goalDate: goalDate ? new Date(goalDate) : null } : {}),
       ...(pin ? { pinHash: await hashPassword(pin) } : {}),
     },
   });

@@ -11,6 +11,12 @@ export function ProfileTab({ client }: { client: ClientDTO }) {
   const [notes, setNotes] = useState(client.notes ?? "");
   const [email, setEmail] = useState(client.email ?? "");
   const [pin, setPin] = useState("");
+  const [goalWeight, setGoalWeight] = useState(client.goalWeight != null ? String(client.goalWeight) : "");
+  const [goalBodyFatPercent, setGoalBodyFatPercent] = useState(
+    client.goalBodyFatPercent != null ? String(client.goalBodyFatPercent) : ""
+  );
+  const [goalDate, setGoalDate] = useState(client.goalDate ? client.goalDate.slice(0, 10) : "");
+  const [goalNote, setGoalNote] = useState(client.goalNote ?? "");
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
@@ -24,7 +30,17 @@ export function ProfileTab({ client }: { client: ClientDTO }) {
       const res = await fetch(`/api/clients/${client.id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, phone, notes, email, pin: pin || undefined }),
+        body: JSON.stringify({
+          name,
+          phone,
+          notes,
+          email: email || null,
+          pin: pin || undefined,
+          goalWeight: goalWeight ? Number(goalWeight) : null,
+          goalBodyFatPercent: goalBodyFatPercent ? Number(goalBodyFatPercent) : null,
+          goalDate: goalDate || null,
+          goalNote,
+        }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -86,6 +102,65 @@ export function ProfileTab({ client }: { client: ClientDTO }) {
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
         />
+      </div>
+
+      <div className="rounded-lg border border-[var(--border)] p-3 flex flex-col gap-3">
+        <p className="text-sm font-medium">Target progress</p>
+        <p className="text-xs text-[var(--muted)] -mt-2">
+          Dibandingkan ke body metric terbaru klien di tab Progress. Kosongkan yang tidak dipakai.
+        </p>
+        <div className="grid gap-3 sm:grid-cols-2">
+          <div>
+            <label className="label" htmlFor="p-goal-weight">
+              Target berat (kg)
+            </label>
+            <input
+              id="p-goal-weight"
+              type="number"
+              step="0.1"
+              className="input"
+              value={goalWeight}
+              onChange={(e) => setGoalWeight(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label" htmlFor="p-goal-bf">
+              Target body fat (%)
+            </label>
+            <input
+              id="p-goal-bf"
+              type="number"
+              step="0.1"
+              className="input"
+              value={goalBodyFatPercent}
+              onChange={(e) => setGoalBodyFatPercent(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label" htmlFor="p-goal-date">
+              Target tanggal
+            </label>
+            <input
+              id="p-goal-date"
+              type="date"
+              className="input"
+              value={goalDate}
+              onChange={(e) => setGoalDate(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="label" htmlFor="p-goal-note">
+              Catatan target
+            </label>
+            <input
+              id="p-goal-note"
+              className="input"
+              value={goalNote}
+              onChange={(e) => setGoalNote(e.target.value)}
+              placeholder="mis. siap lomba Maret"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="rounded-lg border border-[var(--border)] p-3 flex flex-col gap-3">

@@ -22,6 +22,10 @@ type Props = {
     email: string | null;
     phone: string | null;
     trainerName: string;
+    goalWeight: number | null;
+    goalBodyFatPercent: number | null;
+    goalDate: string | null;
+    goalNote: string | null;
   };
   bodyMetrics: BodyMetricDTO[];
   loadEntries: LoadEntryDTO[];
@@ -78,7 +82,14 @@ export function MemberDashboardTabs(props: Props) {
         />
       )}
       {tab === "progress" && (
-        <ProgressTab apiBase={API_BASE} bodyMetrics={props.bodyMetrics} />
+        <ProgressTab
+          apiBase={API_BASE}
+          bodyMetrics={props.bodyMetrics}
+          goalWeight={props.client.goalWeight}
+          goalBodyFatPercent={props.client.goalBodyFatPercent}
+          goalDate={props.client.goalDate}
+          goalNote={props.client.goalNote}
+        />
       )}
       {tab === "akun" && (
         <MemberAccountTab

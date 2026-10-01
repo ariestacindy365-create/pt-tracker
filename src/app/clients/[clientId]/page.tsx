@@ -51,6 +51,10 @@ export default async function ClientDetailPage({
             notes: client.notes,
             email: client.email,
             hasLoginAccess: Boolean(client.pinHash),
+            goalWeight: client.goalWeight,
+            goalBodyFatPercent: client.goalBodyFatPercent,
+            goalDate: client.goalDate ? client.goalDate.toISOString() : null,
+            goalNote: client.goalNote,
           }}
           bodyMetrics={bodyMetrics.map((m) => ({
             id: m.id,

@@ -9,6 +9,7 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
+  ReferenceLine,
   ResponsiveContainer,
 } from "recharts";
 import type { BodyMetricDTO } from "@/lib/types";
@@ -30,10 +31,12 @@ function MetricChart({
   title,
   unit,
   points,
+  goal,
 }: {
   title: string;
   unit: string;
   points: MetricPoint[];
+  goal?: number | null;
 }) {
   if (points.length < 2) return null;
 
@@ -41,6 +44,7 @@ function MetricChart({
   const last = points[points.length - 1];
   const delta = Math.round((last.value - first.value) * 100) / 100;
   const trend = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
+  const toGoal = goal != null ? Math.round((goal - last.value) * 100) / 100 : null;
 
   return (
     <div className="card p-4">
@@ -60,6 +64,15 @@ function MetricChart({
           {trend === "flat" && "Stabil"}
         </span>
       </div>
+      {toGoal !== null && (
+        <p className="text-xs text-[var(--muted)] mb-2">
+          Target {goal}
+          {unit}
+          {toGoal === 0
+            ? " · sudah tercapai"
+            : ` · ${toGoal > 0 ? "butuh naik" : "butuh turun"} ${Math.abs(toGoal)}${unit} lagi`}
+        </p>
+      )}
       <div className="h-40">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={points}>
@@ -67,6 +80,14 @@ function MetricChart({
             <XAxis dataKey="date" fontSize={11} />
             <YAxis fontSize={11} domain={["auto", "auto"]} />
             <Tooltip />
+            {goal != null && (
+              <ReferenceLine
+                y={goal}
+                stroke="var(--success)"
+                strokeDasharray="4 4"
+                label={{ value: "Target", fontSize: 10, fill: "var(--success)", position: "insideTopLeft" }}
+              />
+            )}
             <Line type="monotone" dataKey="value" stroke="var(--accent)" strokeWidth={2} dot={false} />
           </LineChart>
         </ResponsiveContainer>
@@ -78,9 +99,17 @@ function MetricChart({
 export function ProgressTab({
   apiBase,
   bodyMetrics,
+  goalWeight,
+  goalBodyFatPercent,
+  goalDate,
+  goalNote,
 }: {
   apiBase: string;
   bodyMetrics: BodyMetricDTO[];
+  goalWeight?: number | null;
+  goalBodyFatPercent?: number | null;
+  goalDate?: string | null;
+  goalNote?: string | null;
 }) {
   const router = useRouter();
   const [recordedDate, setRecordedDate] = useState(todayStr());
@@ -172,8 +201,26 @@ export function ProgressTab({
     (a, b) => new Date(b.recordedDate).getTime() - new Date(a.recordedDate).getTime()
   );
 
+  const hasGoal = goalWeight != null || goalBodyFatPercent != null || goalDate || goalNote;
+
   return (
     <div className="flex flex-col gap-4">
+      {hasGoal && (
+        <div className="card p-4 text-sm">
+          <p className="label mb-1">Target</p>
+          <p>
+            {[
+              goalWeight != null ? `Berat ${goalWeight}kg` : null,
+              goalBodyFatPercent != null ? `Body fat ${goalBodyFatPercent}%` : null,
+              goalDate ? `sebelum ${new Date(goalDate).toLocaleDateString("id-ID")}` : null,
+            ]
+              .filter(Boolean)
+              .join(" · ")}
+          </p>
+          {goalNote && <p className="text-[var(--muted)] mt-0.5">{goalNote}</p>}
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className="card p-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-6">
         <div>
           <label className="label" htmlFor="bm-date">
@@ -262,8 +309,8 @@ export function ProgressTab({
 
       {anyChart && (
         <div className="grid gap-4 sm:grid-cols-2">
-          <MetricChart title="Berat badan (kg)" unit="kg" points={weightPoints} />
-          <MetricChart title="Body fat (%)" unit="%" points={bodyFatPoints} />
+          <MetricChart title="Berat badan (kg)" unit="kg" points={weightPoints} goal={goalWeight} />
+          <MetricChart title="Body fat (%)" unit="%" points={bodyFatPoints} goal={goalBodyFatPercent} />
           <MetricChart title="Skeletal muscle mass (kg)" unit="kg" points={smmPoints} />
           <MetricChart title="Visceral fat" unit="" points={visceralFatPoints} />
         </div>

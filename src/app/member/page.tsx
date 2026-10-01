@@ -47,6 +47,10 @@ export default async function MemberDashboardPage() {
             email: client.email,
             phone: client.phone,
             trainerName: client.trainer.name,
+            goalWeight: client.goalWeight,
+            goalBodyFatPercent: client.goalBodyFatPercent,
+            goalDate: client.goalDate ? client.goalDate.toISOString() : null,
+            goalNote: client.goalNote,
           }}
           bodyMetrics={bodyMetrics.map((m) => ({
             id: m.id,

@@ -5,6 +5,10 @@ export type ClientDTO = {
   notes: string | null;
   email: string | null;
   hasLoginAccess: boolean;
+  goalWeight: number | null;
+  goalBodyFatPercent: number | null;
+  goalDate: string | null;
+  goalNote: string | null;
 };
 
 export type BodyMetricDTO = {

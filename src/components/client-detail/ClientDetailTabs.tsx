@@ -99,7 +99,14 @@ export function ClientDetailTabs(props: Props) {
         />
       )}
       {tab === "progress" && (
-        <ProgressTab apiBase={`/api/clients/${props.client.id}`} bodyMetrics={props.bodyMetrics} />
+        <ProgressTab
+          apiBase={`/api/clients/${props.client.id}`}
+          bodyMetrics={props.bodyMetrics}
+          goalWeight={props.client.goalWeight}
+          goalBodyFatPercent={props.client.goalBodyFatPercent}
+          goalDate={props.client.goalDate}
+          goalNote={props.client.goalNote}
+        />
       )}
     </div>
   );

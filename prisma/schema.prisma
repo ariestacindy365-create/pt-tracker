@@ -38,6 +38,13 @@ model Client {
   // Klien yang tidak aktif lagi disembunyikan dari daftar utama, bukan dihapus,
   // supaya histori beban & body metric tetap tersimpan.
   isActive  Boolean  @default(true)
+  // Target progress klien, diset trainer — semuanya opsional, dibandingkan
+  // ke body metric terbaru di tab Progress. Satu target standing per klien
+  // (bukan riwayat), berlaku sampai diubah lagi.
+  goalWeight         Float?
+  goalBodyFatPercent Float?
+  goalDate           DateTime?
+  goalNote           String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
