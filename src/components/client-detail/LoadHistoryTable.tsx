@@ -14,6 +14,7 @@ type Draft = {
   setNumber: string;
   weight: string;
   reps: string;
+  note: string;
 };
 
 function toDraft(l: LoadEntryDTO): Draft {
@@ -23,10 +24,15 @@ function toDraft(l: LoadEntryDTO): Draft {
     setNumber: String(l.setNumber),
     weight: String(l.weight),
     reps: String(l.reps),
+    note: l.note ?? "",
   };
 }
 
 const PAGE_SIZE = 10;
+// Exercises are collapsed accordion headers, so this isn't about scrolling
+// — it's to keep the list itself from growing forever for a client with
+// many distinct gerakan logged over months.
+const GROUP_LIMIT = 10;
 
 export function LoadHistoryTable({
   apiBase,
@@ -53,6 +59,7 @@ export function LoadHistoryTable({
   // Halaman aktif per gerakan (1-indexed) — biar daftar yang dibuka juga
   // tidak jadi satu scroll panjang saat set-nya banyak.
   const [pageByExercise, setPageByExercise] = useState<Record<string, number>>({});
+  const [showAllGroups, setShowAllGroups] = useState(false);
 
   async function handleDelete(id: string) {
     setHiddenIds((prev) => new Set(prev).add(id));
@@ -95,6 +102,7 @@ export function LoadHistoryTable({
           setNumber: draft.setNumber,
           weight: draft.weight || "0",
           reps: draft.reps,
+          note: draft.note,
         }),
       });
       const data = await res.json();
@@ -149,9 +157,12 @@ export function LoadHistoryTable({
     return <div className="card p-4 text-sm text-[var(--muted)]">Belum ada riwayat latihan.</div>;
   }
 
+  const visibleGroups = showAllGroups ? groups : groups.slice(0, GROUP_LIMIT);
+  const hiddenGroupCount = groups.length - visibleGroups.length;
+
   return (
     <div className="card divide-y divide-[var(--border)]">
-      {groups.map((g) => {
+      {visibleGroups.map((g) => {
         const isOpen = openExercises.has(g.exerciseName);
         const totalPages = Math.max(1, Math.ceil(g.entries.length / PAGE_SIZE));
         const page = Math.min(pageByExercise[g.exerciseName] ?? 1, totalPages);
@@ -222,6 +233,13 @@ export function LoadHistoryTable({
                                 onChange={(e) => setDraft({ ...draft, reps: e.target.value })}
                               />
                             </div>
+                            <input
+                              type="text"
+                              placeholder="Catatan (opsional)"
+                              className="input text-xs mt-1"
+                              value={draft.note}
+                              onChange={(e) => setDraft({ ...draft, note: e.target.value })}
+                            />
                           </td>
                           <td className="p-2 text-[var(--muted)] text-xs">otomatis</td>
                           <td className="p-2 text-right whitespace-nowrap">
@@ -244,6 +262,7 @@ export function LoadHistoryTable({
                           <td className="p-3">{l.setNumber}</td>
                           <td className="p-3">
                             {l.weight > 0 ? `${l.weight}kg x ${l.reps}` : `${l.reps} detik/reps`}
+                            {l.note && <p className="text-xs text-[var(--muted)] italic mt-0.5">{l.note}</p>}
                           </td>
                           <td className="p-3 font-medium">{l.weight > 0 ? `${l.estimated1RM}kg` : "-"}</td>
                           <td className="p-3 text-right whitespace-nowrap">
@@ -290,6 +309,24 @@ export function LoadHistoryTable({
           </div>
         );
       })}
+      {hiddenGroupCount > 0 && (
+        <button
+          type="button"
+          onClick={() => setShowAllGroups(true)}
+          className="w-full p-3 text-xs text-[var(--accent)] hover:underline"
+        >
+          Lihat semua gerakan ({hiddenGroupCount} lagi)
+        </button>
+      )}
+      {showAllGroups && groups.length > GROUP_LIMIT && (
+        <button
+          type="button"
+          onClick={() => setShowAllGroups(false)}
+          className="w-full p-3 text-xs text-[var(--muted)] hover:underline"
+        >
+          Ciutkan
+        </button>
+      )}
     </div>
   );
 }

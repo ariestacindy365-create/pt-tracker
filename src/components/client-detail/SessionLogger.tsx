@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import type { ProgramDayDTO, ProgramExerciseDTO } from "@/lib/types";
 import { isTimerBased } from "@/lib/loads";
 
-type SetRow = { weight: string; reps: string };
+type SetRow = { weight: string; reps: string; note: string };
 type Person = { id: string; name: string; apiBase: string };
 
 const SELF = "__self__";
@@ -19,7 +19,7 @@ function todayStr() {
 // (so "3x12" starts with 3 rows ready to fill), falling back to 1.
 function defaultRows(ex: ProgramExerciseDTO): SetRow[] {
   const n = ex.targetSets && ex.targetSets > 0 ? ex.targetSets : 1;
-  return Array.from({ length: n }, () => ({ weight: "", reps: "" }));
+  return Array.from({ length: n }, () => ({ weight: "", reps: "", note: "" }));
 }
 
 export function SessionLogger({
@@ -115,7 +115,7 @@ export function SessionLogger({
     ex: ProgramExerciseDTO,
     personId: string,
     setIdx: number,
-    field: "weight" | "reps",
+    field: "weight" | "reps" | "note",
     value: string
   ) {
     setActuals((prev) => {
@@ -135,7 +135,7 @@ export function SessionLogger({
       const exState = { ...(prev[ex.id] ?? {}) };
       for (const p of allPeople) {
         const rows = exState[p.id] ? [...exState[p.id]] : defaultRows(ex);
-        exState[p.id] = [...rows, { weight: "", reps: "" }];
+        exState[p.id] = [...rows, { weight: "", reps: "", note: "" }];
       }
       return { ...prev, [ex.id]: exState };
     });
@@ -198,6 +198,7 @@ export function SessionLogger({
                 setNumber,
                 weight: row.weight || "0",
                 reps: row.reps,
+                note: row.note || undefined,
                 programExerciseId: ex.id,
               })),
             }),
@@ -295,7 +296,7 @@ export function SessionLogger({
                         </div>
                         <div className="flex flex-wrap gap-3">
                           {allPeople.map((person) => {
-                            const row = getRows(ex, person.id)[setIdx] ?? { weight: "", reps: "" };
+                            const row = getRows(ex, person.id)[setIdx] ?? { weight: "", reps: "", note: "" };
                             return (
                               <div key={person.id} className="flex flex-col gap-1 min-w-[9rem]">
                                 <span className="text-xs font-medium text-[var(--accent)]">
@@ -318,44 +319,60 @@ export function SessionLogger({
                                     onChange={(e) => setSetValue(ex, person.id, setIdx, "reps", e.target.value)}
                                   />
                                 </div>
+                                <input
+                                  type="text"
+                                  placeholder="Catatan (opsional)"
+                                  className="input text-xs"
+                                  value={row.note}
+                                  onChange={(e) => setSetValue(ex, person.id, setIdx, "note", e.target.value)}
+                                />
                               </div>
                             );
                           })}
                         </div>
                       </div>
                     ) : (
-                      <div key={setIdx} className="grid grid-cols-[3rem_1fr_1fr_auto] gap-2 items-end">
-                        <p className="text-xs text-[var(--muted)] pb-2">Set {setIdx + 1}</p>
-                        <div>
-                          <label className="label">
-                            {timer ? "Beban (opsional)" : "Beban aktual (kg)"}
-                          </label>
-                          <input
-                            type="number"
-                            step="0.5"
-                            className="input"
-                            value={getRows(ex, SELF)[setIdx]?.weight ?? ""}
-                            onChange={(e) => setSetValue(ex, SELF, setIdx, "weight", e.target.value)}
-                          />
+                      <div key={setIdx} className="rounded-md border border-[var(--border)] p-2 flex flex-col gap-2">
+                        <div className="grid grid-cols-[3rem_1fr_1fr_auto] gap-2 items-end">
+                          <p className="text-xs text-[var(--muted)] pb-2">Set {setIdx + 1}</p>
+                          <div>
+                            <label className="label">
+                              {timer ? "Beban (opsional)" : "Beban aktual (kg)"}
+                            </label>
+                            <input
+                              type="number"
+                              step="0.5"
+                              className="input"
+                              value={getRows(ex, SELF)[setIdx]?.weight ?? ""}
+                              onChange={(e) => setSetValue(ex, SELF, setIdx, "weight", e.target.value)}
+                            />
+                          </div>
+                          <div>
+                            <label className="label">{timer ? "Durasi (detik)" : "Reps aktual"}</label>
+                            <input
+                              type="number"
+                              className="input"
+                              value={getRows(ex, SELF)[setIdx]?.reps ?? ""}
+                              onChange={(e) => setSetValue(ex, SELF, setIdx, "reps", e.target.value)}
+                            />
+                          </div>
+                          {rowCount > 1 && (
+                            <button
+                              type="button"
+                              onClick={() => removeSetRow(ex, setIdx)}
+                              className="text-[var(--danger)] text-xs pb-2.5"
+                            >
+                              Hapus
+                            </button>
+                          )}
                         </div>
-                        <div>
-                          <label className="label">{timer ? "Durasi (detik)" : "Reps aktual"}</label>
-                          <input
-                            type="number"
-                            className="input"
-                            value={getRows(ex, SELF)[setIdx]?.reps ?? ""}
-                            onChange={(e) => setSetValue(ex, SELF, setIdx, "reps", e.target.value)}
-                          />
-                        </div>
-                        {rowCount > 1 && (
-                          <button
-                            type="button"
-                            onClick={() => removeSetRow(ex, setIdx)}
-                            className="text-[var(--danger)] text-xs pb-2.5"
-                          >
-                            Hapus
-                          </button>
-                        )}
+                        <input
+                          type="text"
+                          placeholder="Catatan (opsional)"
+                          className="input text-xs"
+                          value={getRows(ex, SELF)[setIdx]?.note ?? ""}
+                          onChange={(e) => setSetValue(ex, SELF, setIdx, "note", e.target.value)}
+                        />
                       </div>
                     )
                   )}
