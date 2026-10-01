@@ -10,7 +10,7 @@ import { ExerciseProgressChart } from "./ExerciseProgressChart";
 import { ProgramCalendar } from "./ProgramCalendar";
 import { OneRMCalculator } from "./OneRMCalculator";
 
-type BuildMode = "none" | "new" | "edit";
+type BuildMode = "none" | "new" | "edit" | "duplicate";
 
 export function ProgramTab({
   clientId,
@@ -23,6 +23,7 @@ export function ProgramTab({
 }) {
   const router = useRouter();
   const [buildMode, setBuildMode] = useState<BuildMode>("none");
+  const [duplicateSource, setDuplicateSource] = useState<ProgramDTO | null>(null);
   const [planExpanded, setPlanExpanded] = useState(false);
   // Hide a deleted past program immediately instead of waiting for the
   // DELETE request + full page refresh to round-trip.
@@ -32,6 +33,11 @@ export function ProgramTab({
   const activeProgram = programs.find((p) => p.isActive);
   const pastPrograms = programs.filter((p) => !p.isActive && !hiddenProgramIds.has(p.id));
   const building = buildMode !== "none";
+
+  function startDuplicate(program: ProgramDTO) {
+    setDuplicateSource(program);
+    setBuildMode("duplicate");
+  }
 
   async function handleReactivate(programId: string) {
     const res = await fetch(`${apiBase}/programs/${programId}`, {
@@ -91,6 +97,9 @@ export function ProgramTab({
               <button className="btn-secondary text-sm" onClick={() => setBuildMode("edit")}>
                 Edit program
               </button>
+              <button className="btn-secondary text-sm" onClick={() => startDuplicate(activeProgram)}>
+                Duplikat
+              </button>
               <button className="btn-secondary text-sm" onClick={() => setBuildMode("new")}>
                 + Program baru
               </button>
@@ -138,7 +147,11 @@ export function ProgramTab({
         <ProgramBuilderForm
           clientId={clientId}
           editingProgram={buildMode === "edit" ? activeProgram : undefined}
-          onDone={() => setBuildMode("none")}
+          duplicateFrom={buildMode === "duplicate" ? duplicateSource ?? undefined : undefined}
+          onDone={() => {
+            setBuildMode("none");
+            setDuplicateSource(null);
+          }}
         />
       )}
 
@@ -166,6 +179,9 @@ export function ProgramTab({
                 <span className="flex gap-3">
                   <button onClick={() => handleReactivate(p.id)} className="text-[var(--accent)] hover:underline">
                     Aktifkan
+                  </button>
+                  <button onClick={() => startDuplicate(p)} className="text-[var(--accent)] hover:underline">
+                    Duplikat
                   </button>
                   <button onClick={() => handleDeleteProgram(p.id)} className="text-[var(--danger)] hover:underline">
                     Hapus

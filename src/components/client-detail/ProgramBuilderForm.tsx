@@ -61,29 +61,40 @@ export function ProgramBuilderForm({
   clientId,
   onDone,
   editingProgram,
+  duplicateFrom,
 }: {
   clientId: string;
   onDone: () => void;
   editingProgram?: ProgramDTO;
+  // Prefills the form from an existing program (active or past) but always
+  // creates a brand new one on submit — a quick way to reuse a previous
+  // cycle's days/exercises instead of rebuilding from scratch. Ignored when
+  // editingProgram is set.
+  duplicateFrom?: ProgramDTO;
 }) {
   const router = useRouter();
+  const sourceProgram = editingProgram ?? duplicateFrom;
   const initial = editingProgram
     ? toDraft(editingProgram)
-    : { name: "", startDate: todayStr(), days: [emptyDay(1)] };
+    : duplicateFrom
+      ? { ...toDraft(duplicateFrom), name: `${duplicateFrom.name} (Salinan)`, startDate: todayStr() }
+      : { name: "", startDate: todayStr(), days: [emptyDay(1)] };
   const [name, setName] = useState(initial.name);
   const [startDate, setStartDate] = useState(initial.startDate);
   const [days, setDays] = useState<DayDraft[]>(initial.days);
   const [participantIds, setParticipantIds] = useState<string[]>(
-    editingProgram?.participants.map((p) => p.id) ?? []
+    sourceProgram?.participants.map((p) => p.id) ?? []
   );
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [movements, setMovements] = useState<MovementDTO[]>([]);
   const [otherClients, setOtherClients] = useState<OtherClient[]>([]);
 
-  // Keyed per program being edited (or "new" for a fresh one), so an
-  // abandoned edit draft never leaks into a different program.
-  const draftKey = `${DRAFT_PREFIX}${clientId}:${editingProgram?.id ?? "new"}`;
+  // Keyed per program being edited/duplicated (or "new" for a fresh one),
+  // so an abandoned draft never leaks into a different program.
+  const draftKey = `${DRAFT_PREFIX}${clientId}:${
+    editingProgram ? editingProgram.id : duplicateFrom ? `dup-${duplicateFrom.id}` : "new"
+  }`;
 
   useEffect(() => {
     try {
@@ -244,7 +255,9 @@ export function ProgramBuilderForm({
 
   return (
     <form onSubmit={handleSubmit} className="card p-4 flex flex-col gap-4">
-      <p className="label">{editingProgram ? "Edit program" : "Susun program baru"}</p>
+      <p className="label">
+        {editingProgram ? "Edit program" : duplicateFrom ? `Duplikat dari "${duplicateFrom.name}"` : "Susun program baru"}
+      </p>
       <div className="grid gap-3 sm:grid-cols-2">
         <div>
           <label className="label" htmlFor="prog-name">Nama program</label>
