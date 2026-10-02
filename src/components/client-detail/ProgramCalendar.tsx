@@ -15,6 +15,7 @@ import {
 } from "date-fns";
 import { id as idLocale } from "date-fns/locale";
 import type { ProgramDTO, LoadEntryDTO } from "@/lib/types";
+import { dayTitle } from "@/lib/format";
 
 // Programs are contiguous by startDate (a new program deactivates the
 // previous one) — so "which program applied on date X" is just the last
@@ -172,7 +173,7 @@ export function ProgramCalendar({
               </p>
               {selectedDay ? (
                 <>
-                  <p className="font-medium text-sm mb-1">{selectedDay.dayLabel}</p>
+                  <p className="font-medium text-sm mb-1">{dayTitle(selectedDay)}</p>
                   <ul className="flex flex-col gap-0.5">
                     {selectedDay.exercises.map((ex) => (
                       <li key={ex.id}>

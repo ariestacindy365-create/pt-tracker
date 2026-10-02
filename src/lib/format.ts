@@ -28,3 +28,10 @@ export function avatarColor(name: string): { bg: string; fg: string } {
   }
   return AVATAR_PALETTE[Math.abs(hash) % AVATAR_PALETTE.length];
 }
+
+// "Hari 3" + its first gerakan -> "Hari 3 · Deadlift", so a day can be told
+// apart at a glance without opening it.
+export function dayTitle(day: { dayLabel: string; exercises: { exerciseName: string }[] }): string {
+  const first = day.exercises[0]?.exerciseName;
+  return first ? `${day.dayLabel} · ${first}` : day.dayLabel;
+}

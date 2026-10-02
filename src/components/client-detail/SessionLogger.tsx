@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ProgramDTO, ProgramExerciseDTO } from "@/lib/types";
 import { isTimerBased } from "@/lib/loads";
+import { dayTitle } from "@/lib/format";
 
 type SetRow = { weight: string; reps: string; note: string };
 type Person = { id: string; name: string; apiBase: string };
@@ -272,7 +273,7 @@ export function SessionLogger({
               <optgroup key={p.id} label={p.name}>
                 {p.days.map((d) => (
                   <option key={d.id} value={d.id}>
-                    {d.dayLabel}
+                    {dayTitle(d)}
                     {d.date
                       ? ` — ${new Date(d.date).toLocaleDateString("id-ID", { day: "2-digit", month: "short" })}`
                       : ""}

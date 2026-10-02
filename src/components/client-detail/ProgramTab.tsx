@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { ProgramDTO, LoadEntryDTO } from "@/lib/types";
+import { dayTitle } from "@/lib/format";
 import { ProgramBuilderForm } from "./ProgramBuilderForm";
 import { SessionLogger } from "./SessionLogger";
 import { LoadHistoryTable } from "./LoadHistoryTable";
@@ -122,7 +123,7 @@ export function ProgramTab({
               {activeProgram.days.map((day) => (
                 <div key={day.id} className="rounded-lg border border-[var(--border)] p-3">
                   <p className="font-medium text-sm mb-1">
-                    {day.dayLabel}
+                    {dayTitle(day)}
                     {day.date && (
                       <span className="font-normal text-[var(--muted)]">
                         {" "}
