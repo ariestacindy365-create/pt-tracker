@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import type { ProgramDayDTO, ProgramExerciseDTO } from "@/lib/types";
+import type { ProgramDTO, ProgramExerciseDTO } from "@/lib/types";
 import { isTimerBased } from "@/lib/loads";
 
 type SetRow = { weight: string; reps: string; note: string };
@@ -24,21 +24,35 @@ function defaultRows(ex: ProgramExerciseDTO): SetRow[] {
 
 export function SessionLogger({
   apiBase,
-  days,
-  people,
+  programs,
+  perPersonColumns = false,
 }: {
   apiBase: string;
-  days: ProgramDayDTO[];
-  // Other people sharing this program (private couple/group) — when given
-  // with more than one entry, the logger shows a column per person so the
-  // trainer can fill everyone's actual weight/reps on one page instead of
-  // visiting each client's page separately. Falls back to the single-person
-  // layout (using `apiBase` directly, e.g. the member's own `/api/member`)
-  // when omitted or solo.
-  people?: { id: string; name: string }[];
+  // Every program (active and past) — all their days go into ONE dropdown
+  // (oldest program/day first), so the trainer just picks today's session
+  // instead of first deciding which program it belongs to.
+  programs: ProgramDTO[];
+  // Trainer view: when the picked day's program is shared (private
+  // couple/group), show a column per person so everyone's actual
+  // weight/reps get filled on one page. Off for the member's own view
+  // (`/api/member`), which always logs for themselves.
+  perPersonColumns?: boolean;
 }) {
   const router = useRouter();
-  const [dayId, setDayId] = useState(days[0]?.id ?? "");
+
+  const sortedPrograms = [...programs].sort((a, b) => a.startDate.localeCompare(b.startDate));
+  const days = sortedPrograms.flatMap((p) => p.days);
+  const programOfDay = new Map<string, ProgramDTO>();
+  for (const p of sortedPrograms) for (const d of p.days) programOfDay.set(d.id, p);
+
+  // Default to the day scheduled for today; otherwise the first day of the
+  // active program (falling back to the very first day).
+  const [dayId, setDayId] = useState(() => {
+    const today = todayStr();
+    const scheduledToday = days.find((d) => d.date && d.date.slice(0, 10) === today);
+    const active = programs.find((p) => p.isActive);
+    return scheduledToday?.id ?? active?.days[0]?.id ?? days[0]?.id ?? "";
+  });
   const [recordedDate, setRecordedDate] = useState(todayStr());
   // actuals[exerciseId][personId] = rows
   const [actuals, setActuals] = useState<Record<string, Record<string, SetRow[]>>>({});
@@ -101,9 +115,14 @@ export function SessionLogger({
 
   const selectedDay = days.find((d) => d.id === dayId);
 
+  const selectedProgram = selectedDay ? programOfDay.get(selectedDay.id) : undefined;
+  const sharedPeople =
+    perPersonColumns && selectedProgram
+      ? [selectedProgram.owner, ...selectedProgram.participants]
+      : [];
   const allPeople: Person[] =
-    people && people.length > 1
-      ? people.map((p) => ({ id: p.id, name: p.name, apiBase: `/api/clients/${p.id}` }))
+    sharedPeople.length > 1
+      ? sharedPeople.map((p) => ({ id: p.id, name: p.name, apiBase: `/api/clients/${p.id}` }))
       : [{ id: SELF, name: "", apiBase }];
   const multiPerson = allPeople.length > 1;
 
@@ -249,13 +268,17 @@ export function SessionLogger({
         <div>
           <label className="label" htmlFor="sl-day">Hari program</label>
           <select id="sl-day" className="input" value={dayId} onChange={(e) => setDayId(e.target.value)}>
-            {days.map((d) => (
-              <option key={d.id} value={d.id}>
-                {d.dayLabel}
-                {d.date
-                  ? ` — ${new Date(d.date).toLocaleDateString("id-ID", { day: "2-digit", month: "short" })}`
-                  : ""}
-              </option>
+            {sortedPrograms.map((p) => (
+              <optgroup key={p.id} label={p.name}>
+                {p.days.map((d) => (
+                  <option key={d.id} value={d.id}>
+                    {d.dayLabel}
+                    {d.date
+                      ? ` — ${new Date(d.date).toLocaleDateString("id-ID", { day: "2-digit", month: "short" })}`
+                      : ""}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
         </div>

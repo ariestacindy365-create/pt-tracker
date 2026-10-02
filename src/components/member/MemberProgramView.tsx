@@ -88,7 +88,7 @@ export function MemberProgramView({
         </div>
       )}
 
-      {activeProgram && <SessionLogger apiBase={API_BASE} days={activeProgram.days} />}
+      {programs.length > 0 && <SessionLogger apiBase={API_BASE} programs={programs} />}
 
       <ProgramCalendar programs={programs} loadEntries={loadEntries} />
 
